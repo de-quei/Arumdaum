@@ -7,11 +7,11 @@ import javax.swing.JLabel;
 public class StartFrame extends JFrame {
 
 	//배경 이미지 상대경로
-    JLabel MainBackground = new JLabel(new ImageIcon("./img/background_book.png"));
+    JLabel MainBackground = new JLabel(new ImageIcon("./img/loginframe.png"));
 
     public StartFrame() {
     	//창 초기설정
-        this.setSize(1280, 720);
+        this.setSize(1280, 750);
         this.setResizable(false);
         this.setTitle("아름다움");
         this.setLayout(null);
