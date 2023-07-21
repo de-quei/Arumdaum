@@ -7,3 +7,6 @@
 ## Language
 - ```java```
 - ```Mysql```
+
+## Introduce
+![image](https://github.com/de-quei/Arumdaum/assets/108276366/f40a93fa-951b-490f-a683-6eb677bde5fe)
