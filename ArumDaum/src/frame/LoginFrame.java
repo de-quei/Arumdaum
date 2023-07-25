@@ -55,12 +55,11 @@ public class LoginFrame extends JFrame {
         MainBackground.setBounds(0, 0, 1280, 720);
         add(MainBackground);
         
-        //TODO : 로그인 실패! 뜨는 오류 해결하기
         //로그인 버튼에 대한 액션리스너
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	int class_num = Integer.parseInt(sIdText.getText());
+            	int class_num = Integer.parseInt(sIdText.getText()); //숫자형으로 받는다.
                 String password = new String(pwText.getPassword());
 
                 if (validateLogin(class_num, password)) {
@@ -79,7 +78,7 @@ public class LoginFrame extends JFrame {
     private boolean validateLogin(int class_num, String password) {
         try {
         	//데이터베이스 정보
-            String dbURL = "jdbc:mysql://localhost:3306/arumdaum"; 
+            String dbURL = "jdbc:mysql://localhost:3306/arumdaum?serverTimezone=UTC"; 
             String dbUsername = "root"; 
             String dbPassword = "0000"; 
 
@@ -95,8 +94,6 @@ public class LoginFrame extends JFrame {
 
             return resultSet.next();
         } catch (SQLException ex) {
-        	//데이터베이스 연결이나 잘못된 쿼리로 인한 로그인 실패
-        	//현재 오류의 원인은 여기!
             return false;
         }
     }
