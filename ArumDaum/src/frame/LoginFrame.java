@@ -83,6 +83,7 @@ public class LoginFrame extends JFrame {
             String dbUsername = "root"; 
             String dbPassword = "0000"; 
 
+            //DriverManager을 이용한 데이터베이스 연결
             Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
 
             String query = "SELECT * FROM student_info WHERE class_num = ? AND password = ?";
@@ -94,7 +95,8 @@ public class LoginFrame extends JFrame {
 
             return resultSet.next();
         } catch (SQLException ex) {
-        	//로그인 실패
+        	//데이터베이스 연결이나 잘못된 쿼리로 인한 로그인 실패
+        	//현재 오류의 원인은 여기!
             return false;
         }
     }
