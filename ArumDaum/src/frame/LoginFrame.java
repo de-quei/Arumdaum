@@ -2,6 +2,13 @@ package frame;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,8 +55,48 @@ public class LoginFrame extends JFrame {
         MainBackground.setBounds(0, 0, 1280, 720);
         add(MainBackground);
         
+        //TODO : 로그인 실패! 뜨는 오류 해결하기
+        //로그인 버튼에 대한 액션리스너
+        loginBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	int class_num = Integer.parseInt(sIdText.getText());
+                String password = new String(pwText.getPassword());
+
+                if (validateLogin(class_num, password)) {
+                    // Handle successful login (e.g., open a new window).
+                    System.out.println("로그인 성공!");
+                } else {
+                    System.out.println("로그인 실패!");
+                }
+            }
+        });
+        
         //창이 보이게 함.
         setVisible(true);
+    }
+    
+    private boolean validateLogin(int class_num, String password) {
+        try {
+        	//데이터베이스 정보
+            String dbURL = "jdbc:mysql://localhost:3306/arumdaum"; 
+            String dbUsername = "root"; 
+            String dbPassword = "0000"; 
+
+            Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+
+            String query = "SELECT * FROM student_info WHERE class_num = ? AND password = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, class_num);
+            statement.setString(2, password);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            return resultSet.next();
+        } catch (SQLException ex) {
+        	//로그인 실패
+            return false;
+        }
     }
 
 }
