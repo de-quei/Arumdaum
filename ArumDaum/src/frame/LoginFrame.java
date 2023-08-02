@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import frame.LibraryFrame;
+
 public class LoginFrame extends JFrame {
 
 	//배경 이미지 상대경로
@@ -63,8 +65,10 @@ public class LoginFrame extends JFrame {
                 String password = new String(pwText.getPassword());
 
                 if (validateLogin(class_num, password)) {
-                    // Handle successful login (e.g., open a new window).
+                    //TODO : 로그인에 대한 여러 경우의 수 고려 / 로그인 성공 시 메인화면 가는 기능 구현
                     System.out.println("로그인 성공!");
+                    //로그인이 성공하면 libraryFrame()을 호출한다.
+                    openLibraryFrame();
                 } else {
                     System.out.println("로그인 실패!");
                 }
@@ -74,6 +78,7 @@ public class LoginFrame extends JFrame {
         //창이 보이게 함.
         setVisible(true);
     }
+    
     
     private boolean validateLogin(int class_num, String password) {
         try {
@@ -96,6 +101,13 @@ public class LoginFrame extends JFrame {
         } catch (SQLException ex) {
             return false;
         }
+    }
+    
+    private void openLibraryFrame() {
+        // 기존의 창을 지우고
+        dispose();
+        //LibraryFrmae()을 호출한다.
+        new LibraryFrame();
     }
 
 }
