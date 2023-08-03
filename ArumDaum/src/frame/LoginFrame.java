@@ -14,10 +14,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import frame.LibraryFrame;
 
 public class LoginFrame extends JFrame {
 
@@ -36,7 +35,7 @@ public class LoginFrame extends JFrame {
         setLocationRelativeTo(null);
 
         // 아이디 입력 필드 위치, 크기 설정
-        //(a, b, c, d) --> a,b 위치 / c, d 크기
+        // (a, b, c, d) --> a,b 위치 / c, d 크기
         sIdText.setBounds(511, 306, 207, 45);
         sIdText.setFont(new Font("Gowun Batang", Font.PLAIN, 18)); // 입력받을 때, 문자 크기 및 폰트 설정
         add(sIdText);
@@ -53,41 +52,44 @@ public class LoginFrame extends JFrame {
         loginBtn.setFont(new Font("Gowun Batang", Font.BOLD, 16)); // 버튼 속 글자의 폰트 및 스타일, 크기 설정
         add(loginBtn);
         
-        //이미지의 위치, 크기
+        // 이미지의 위치, 크기
         MainBackground.setBounds(0, 0, 1280, 720);
         add(MainBackground);
         
-        //로그인 버튼에 대한 액션리스너
+        // 로그인 버튼에 대한 액션리스너
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	int class_num = Integer.parseInt(sIdText.getText()); //숫자형으로 받는다.
+            	int class_num = Integer.parseInt(sIdText.getText()); // 숫자형으로 받는다.
                 String password = new String(pwText.getPassword());
 
+                // 로그인 성공
                 if (validateLogin(class_num, password)) {
-                    //TODO : 로그인에 대한 여러 경우의 수 고려 / 로그인 성공 시 메인화면 가는 기능 구현
-                    System.out.println("로그인 성공!");
+                    // TODO : 로그인에 대한 여러 경우의 수 고려
+                    System.out.println("로그인 성공");
                     //로그인이 성공하면 libraryFrame()을 호출한다.
                     openLibraryFrame();
-                } else {
-                    System.out.println("로그인 실패!");
+                // 로그인 실패
+                }else {
+                    System.out.println("로그인 실패");
+                    JOptionPane.showMessageDialog(null, "학번 및 비밀번호를 확인해주세요.", "로그인 실패", JOptionPane.DEFAULT_OPTION);
                 }
             }
         });
         
-        //창이 보이게 함.
+        // 창이 보이게 함.
         setVisible(true);
     }
     
     
     private boolean validateLogin(int class_num, String password) {
         try {
-        	//데이터베이스 정보
+        	// 데이터베이스 정보
             String dbURL = "jdbc:mysql://localhost:3306/arumdaum?serverTimezone=UTC"; 
             String dbUsername = "root"; 
             String dbPassword = "0000"; 
 
-            //DriverManager을 이용한 데이터베이스 연결
+            // DriverManager을 이용한 데이터베이스 연결
             Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
 
             String query = "SELECT * FROM student_info WHERE class_num = ? AND password = ?";
@@ -106,7 +108,7 @@ public class LoginFrame extends JFrame {
     private void openLibraryFrame() {
         // 기존의 창을 지우고
         dispose();
-        //LibraryFrmae()을 호출한다.
+        // LibraryFrmae()을 호출한다.
         new LibraryFrame();
     }
 
