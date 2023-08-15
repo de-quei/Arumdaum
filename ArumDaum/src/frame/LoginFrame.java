@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 public class LoginFrame extends JFrame {
 
 	//배경 이미지 상대경로
-    JLabel MainBackground = new JLabel(new ImageIcon("./img/loginframe.png"));
+    JLabel LoginBackground = new JLabel(new ImageIcon("./img/loginframe.png"));
     JTextField sIdText = new JTextField();
     JPasswordField pwText = new JPasswordField();
     JButton loginBtn = new JButton("로그인");
@@ -53,8 +53,8 @@ public class LoginFrame extends JFrame {
         add(loginBtn);
         
         // 이미지의 위치, 크기
-        MainBackground.setBounds(0, 0, 1280, 720);
-        add(MainBackground);
+        LoginBackground.setBounds(0, 0, 1280, 720);
+        add(LoginBackground);
         
         // 로그인 버튼에 대한 액션리스너
         loginBtn.addActionListener(new ActionListener() {
@@ -72,7 +72,6 @@ public class LoginFrame extends JFrame {
                 // 로그인 실패
                 }else {
                     System.out.println("로그인 실패");
-                    JOptionPane.showMessageDialog(null, "학번 및 비밀번호를 확인해주세요.", "로그인 실패", JOptionPane.DEFAULT_OPTION);
                 }
             }
         });
@@ -100,6 +99,7 @@ public class LoginFrame extends JFrame {
             ResultSet resultSet = statement.executeQuery();
 
             return resultSet.next();
+            
         } catch (SQLException ex) {
             return false;
         }
