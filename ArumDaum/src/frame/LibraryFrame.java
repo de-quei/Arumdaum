@@ -8,6 +8,7 @@ public class LibraryFrame extends JFrame{
 
 	//배경 이미지 상대경로
     JLabel MainHeader = new JLabel(new ImageIcon("./img/MainHeader.png"));
+    JLabel UserInfoSection = new JLabel(new ImageIcon("./img/UserInfoSection.png"));
     
 	public LibraryFrame() {
 		// 창 초기설정
@@ -16,6 +17,9 @@ public class LibraryFrame extends JFrame{
         setTitle("아름다움");
         setLayout(null);
         setLocationRelativeTo(null);
+        
+        UserInfoSection.setBounds(882, 65, 368, 217);
+        add(UserInfoSection);
         
         // 이미지의 위치, 크기
         MainHeader.setBounds(0, 0, 1280, 48);
