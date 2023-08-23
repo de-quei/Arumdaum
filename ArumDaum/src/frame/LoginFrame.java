@@ -14,14 +14,24 @@ public class LoginFrame extends JFrame {
     JButton loginBtn = new JButton("로그인");
 
     public LoginFrame() {
-        // 창 초기설정
+        initailzeUI();
+        addComponentsUI();
+        eventHandler();
+        // 창이 보이게 함.
+        setVisible(true);
+    }
+    
+    private void initailzeUI(){
+    	// 창 초기설정
         setSize(1280, 750);
         setResizable(false);
         setTitle("아름다움");
         setLayout(null);
         setLocationRelativeTo(null);
-
-        // 아이디 입력 필드 위치, 크기 설정
+    }
+    
+    private void addComponentsUI() {
+    	// 아이디 입력 필드 위치, 크기 설정
         // (a, b, c, d) --> a,b 위치 / c, d 크기
         sIdText.setBounds(511, 306, 207, 45);
         sIdText.setFont(new Font("Gowun Batang", Font.PLAIN, 18)); // 입력받을 때, 문자 크기 및 폰트 설정
@@ -42,8 +52,10 @@ public class LoginFrame extends JFrame {
         // 이미지의 위치, 크기
         LoginBackground.setBounds(0, 0, 1280, 720);
         add(LoginBackground);
-        
-        // 로그인 버튼에 대한 액션리스너
+    }
+    
+    private void eventHandler() {
+    	// 로그인 버튼에 대한 액션리스너
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,11 +74,7 @@ public class LoginFrame extends JFrame {
                 }
             }
         });
-        
-        // 창이 보이게 함.
-        setVisible(true);
     }
-    
     
     private boolean validateLogin(int class_num, String password) {
         try {
