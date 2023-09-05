@@ -15,7 +15,7 @@ public class LibraryFrame extends JFrame{
 	
 	JPanel header = new JPanel();
 	JLabel header_label = new JLabel("\"아름다움\"");
-	JButton button = new JButton("로그아웃");
+	JButton logoutBtn = new JButton("로그아웃");
     
 	public LibraryFrame() {
 		initializeUI();
@@ -48,7 +48,10 @@ public class LibraryFrame extends JFrame{
 		header.add(header_label);
 		
 		// 로그아웃 버튼
-        header.add(button, BorderLayout.EAST); // JButton을 header 패널의 오른쪽에 추가
+        header.add(logoutBtn, BorderLayout.EAST); // JButton을 header 패널의 오른쪽에 추가
+        logoutBtn.setBackground(Color.decode("#1E6525")); 
+        logoutBtn.setForeground(Color.WHITE); 
+        logoutBtn.setFont(new Font("Gowun Batang", Font.BOLD, 16));
 		
 		add(header);
 	}

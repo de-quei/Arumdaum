@@ -6,6 +6,8 @@ import java.sql.*;
 import javax.swing.*;
 
 public class LoginFrame extends JFrame {
+	
+	boolean loginvaild = false;
 
 	//배경 이미지 상대경로
     JLabel LoginBackground = new JLabel(new ImageIcon("./img/loginframe.png"));
@@ -65,6 +67,7 @@ public class LoginFrame extends JFrame {
                 // 로그인 성공
                 if (validateLogin(class_num, password)) {
                     // TODO : 로그인에 대한 여러 경우의 수 고려
+                	loginvaild = true;
                     System.out.println("로그인 성공");
                     //로그인이 성공하면 libraryFrame()을 호출한다.
                     openLibraryFrame();
