@@ -7,7 +7,9 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -16,6 +18,8 @@ public class LibraryFrame extends JFrame{
 	JPanel header = new JPanel();
 	JLabel header_label = new JLabel("\"아름다움\"");
 	JButton logoutBtn = new JButton("로그아웃");
+	JPanel BookCategory = new JPanel();
+	JLabel categoryLabel = new JLabel("책 카테고리");
     
 	public LibraryFrame() {
 		initializeUI();
@@ -52,7 +56,28 @@ public class LibraryFrame extends JFrame{
         logoutBtn.setBackground(Color.decode("#1E6525")); 
         logoutBtn.setForeground(Color.WHITE); 
         logoutBtn.setFont(new Font("Gowun Batang", Font.BOLD, 16));
-		
+        
 		add(header);
+		
+		// 책 카테고리
+		BookCategory.setBounds(34, 88, 170, 34); 
+	    BookCategory.setBackground(Color.decode("#81B486")); 
+	    add(BookCategory); 
+	    
+	    categoryLabel.setFont(new Font("Gowun Batang", Font.PLAIN, 16)); 
+	    categoryLabel.setForeground(Color.WHITE); 
+	    BookCategory.add(categoryLabel); 
+		
+		// JList를 이용한 책 카테고리 선택창
+		String[] bookCategories = {
+	            "소설", "시/에세이", "인문", "자기계발", "종교", "요리",
+	            "건강", "취미/실용/스포츠", "가정/육아", "예술", "기술/공학",
+	            "외국어", "과학", "취업/수험서", "여행", "컴퓨터/IT", "만화"
+	        	};
+		JList<String> categoryList = new JList<String>(bookCategories);
+		JScrollPane scrollPane = new JScrollPane(categoryList);
+		scrollPane.setBounds(34, 122, 170, 280);
+		
+		add(scrollPane);
 	}
 }
