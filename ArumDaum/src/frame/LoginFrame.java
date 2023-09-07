@@ -33,12 +33,33 @@ public class LoginFrame extends JFrame {
     }
     
     private void addComponentsUI() {
+    	JLabel title = new JLabel("\"아름다움\"");
+    	title.setBounds(511, 212, 170, 49); 
+    	title.setFont(new Font("Gowun Batang", Font.PLAIN, 32)); 
+    	title.setForeground(Color.decode("#1E6525")); 
+    	add(title);
+    	
+    	JLabel subheading = new JLabel(": 책 속에 모든 과거의 영혼이 잠들어 있다.");
+    	subheading.setBounds(511, 260, 300, 24);
+    	subheading.setFont(new Font("Gowun Batang", Font.PLAIN, 16));
+    	add(subheading);
+    	
+    	JLabel studentId = new JLabel("학번");
+    	studentId.setBounds(458, 316, 33, 24);
+    	studentId.setFont(new Font("Gowun Batang", Font.PLAIN, 16));
+    	add(studentId);
+    	
     	// 아이디 입력 필드 위치, 크기 설정
         // (a, b, c, d) --> a,b 위치 / c, d 크기
         sIdText.setBounds(511, 306, 207, 45);
         sIdText.setFont(new Font("Gowun Batang", Font.PLAIN, 18)); // 입력받을 때, 문자 크기 및 폰트 설정
         add(sIdText);
 
+        JLabel password = new JLabel("비밀번호");
+    	password.setBounds(427, 379, 65, 24);
+    	password.setFont(new Font("Gowun Batang", Font.PLAIN, 16));
+    	add(password);
+    	
         // 비밀번호 입력 필드 위치, 크기 설정
         pwText.setBounds(511, 369, 207, 45);
         pwText.setFont(new Font("Gowun Batang", Font.PLAIN, 18)); 
@@ -66,7 +87,8 @@ public class LoginFrame extends JFrame {
 
                 // 로그인 성공
                 if (validateLogin(class_num, password)) {
-                    // TODO : 로그인에 대한 여러 경우의 수 고려
+                    // TODO : 로그인에 대한 여러 경우의 수 고려하기
+                	// 1. 미입력시 알림 / 아이디 및 비밀번호 오류 / 올바르지 못한 데이터형 입력
                 	loginvaild = true;
                     System.out.println("로그인 성공");
                     //로그인이 성공하면 libraryFrame()을 호출한다.
