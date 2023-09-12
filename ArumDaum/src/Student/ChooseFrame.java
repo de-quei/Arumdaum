@@ -1,6 +1,8 @@
 package Student;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,11 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 public class ChooseFrame extends JFrame {
-
-	JButton sInfo = new JButton("회원 정보");
+	
     JButton search = new JButton("도서 검색");
     JButton check = new JButton("도서 현황");
     JButton status = new JButton("신청 현황");
+    JButton sInfo = new JButton("회원 정보");
     
     JPanel welcome = new JPanel();
 
@@ -56,7 +58,50 @@ public class ChooseFrame extends JFrame {
     }
     
     private void eventHandler() {
-    	
+        search.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openBookSearchFrame();
+            }
+        });
+        check.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	openBookStatusFrame();
+            }
+        });
+        status.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	openApplicationStatusFrame();
+            }
+        });
+        sInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	openStudentInfoFrame();
+            }
+        });
+        
     }
     
+    private void openBookSearchFrame() {
+    	dispose();
+    	new BookSearchFrame();
+    }
+    
+    private void openBookStatusFrame() {
+    	dispose();
+    	new BookStatusFrame();
+    }
+    
+    private void openApplicationStatusFrame() {
+    	dispose();
+    	new ApplicationStatusFrame();
+    }
+    
+    private void openStudentInfoFrame() {
+    	dispose();
+    	new StudentInfoFrame();
+    }
 }

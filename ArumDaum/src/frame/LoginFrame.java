@@ -111,6 +111,7 @@ public class LoginFrame extends JFrame {
                             openChooseFrame();
                         
                     } else {
+                    	// TODO : 올바르지 못한 학번 및 비밀번호를 입력했을때 dialog 표시하기.
                         System.out.println("로그인 실패");
                     }
                 } catch (NumberFormatException ex) {
