@@ -82,11 +82,11 @@ public class LoginFrame extends JFrame {
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String sIdTextValue = sIdText.getText();
+                String sId = sIdText.getText();
                 String password = new String(pwText.getPassword());
 
                 // 학번 입력란이 비어있는지 확인
-                if (sIdTextValue.isEmpty()) {
+                if (sId.isEmpty()) {
                     JOptionPane.showMessageDialog(LoginFrame.this, "학번을 입력하세요.", "오류", JOptionPane.ERROR_MESSAGE);
                     return; // 입력이 비어있다면 로그인 시도 중단
                 }
@@ -94,12 +94,12 @@ public class LoginFrame extends JFrame {
                 try {
 
                     // 로그인 성공
-                    if (validateLogin(sIdTextValue, password)) {
+                    if (validateLogin(sId, password)) {
                         loginvaild = true;
                         System.out.println("로그인 성공");
 
                         // 특정 조건에 따라 ManagerFrame을 열도록 설정
-                        if (sIdTextValue.equals("MirimManager") && password.equals("alflarhkgkrrh")) 
+                        if (sId.equals("MirimManager") && password.equals("alflarhkgkrrh")) 
                             openManagerFrame();
                          else 
                             openLibraryFrame();
