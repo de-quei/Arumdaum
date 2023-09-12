@@ -1,4 +1,4 @@
-package frame;
+package Manager;
 
 import javax.swing.JFrame;
 

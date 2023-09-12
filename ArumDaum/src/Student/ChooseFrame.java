@@ -1,4 +1,4 @@
-package frame;
+package Student;
 
 import java.awt.Color;
 
@@ -20,6 +20,7 @@ public class ChooseFrame extends JFrame {
     public ChooseFrame() {
         initializeUI();
         addComponentsUI();
+        eventHandler();
         setVisible(true);
     }
 
@@ -35,7 +36,7 @@ public class ChooseFrame extends JFrame {
 
     private void addComponentsUI() {
     	
-    	// 명언이 나올 패널 (파일 입출력 혹은 데이터베이스)
+    	// TODO : 명언이 나올 패널 (파일 입출력 혹은 데이터베이스)
     	welcome.setBounds(40, 25, 400, 70);
     	welcome.setBorder(new LineBorder(Color.BLACK, 1));
     	welcome.setBackground(Color.WHITE);
@@ -52,6 +53,10 @@ public class ChooseFrame extends JFrame {
         add(check);
         add(status);
         add(sInfo);
+    }
+    
+    private void eventHandler() {
+    	
     }
     
 }

@@ -5,6 +5,9 @@ import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
 
+import Manager.ManagerFrame;
+import Student.ChooseFrame;
+
 public class LoginFrame extends JFrame {
 	
 	boolean loginvaild = false;
@@ -105,7 +108,7 @@ public class LoginFrame extends JFrame {
                         if (sId.equals("MirimManager") && password.equals("alflarhkgkrrh")) 
                             openManagerFrame();
                          else 
-                            openLibraryFrame();
+                            openChooseFrame();
                         
                     } else {
                         System.out.println("로그인 실패");
@@ -144,7 +147,7 @@ public class LoginFrame extends JFrame {
         }
     }
     
-    private void openLibraryFrame() {
+    private void openChooseFrame() {
         // 기존의 창을 지우고
         dispose();
         // LibraryFrmae()을 호출한다.
