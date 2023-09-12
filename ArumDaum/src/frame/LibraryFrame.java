@@ -11,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -25,6 +26,9 @@ public class LibraryFrame extends JFrame{
 	JLabel categoryLabel = new JLabel("책 카테고리");
 	
 	JButton logoutBtn = new JButton("로그아웃");
+	JButton searchBtn = new JButton("검색");
+	
+	JTextField searchField = new JTextField();
 	
 	public LibraryFrame() {
 		initializeUI();
@@ -81,6 +85,7 @@ public class LibraryFrame extends JFrame{
 	            "건강", "취미/실용/스포츠", "가정/육아", "예술", "기술/공학",
 	            "외국어", "과학", "취업/수험서", "여행", "컴퓨터/IT", "만화"
 	        	};
+		
 		JList<String> categoryList = new JList<String>(bookCategories);
 		JScrollPane scrollPane = new JScrollPane(categoryList);
 		scrollPane.setBounds(34, 122, 170, 280);
@@ -92,6 +97,14 @@ public class LibraryFrame extends JFrame{
 		wiseSaying.setBackground(Color.RED); 
 
 		add(wiseSaying); 
+		
+		// 검색바
+		searchField.setBounds(228, 88, 540, 48); // 크기와 위치 설정
+        add(searchField); // 프레임에 검색바 추가
+        
+        searchBtn.setBounds(768, 88, 90, 48);
+        add(searchBtn);
+        
 		
 		// 학생의 정보를 조회할 수 있는 panel 
 		Student_Info.setBounds(882, 85, 368, 217);
