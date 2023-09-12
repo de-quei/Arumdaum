@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
 
-import Manager.ManagerFrame;
+import Manager.MChooseFrame;
 import Student.ChooseFrame;
 
 public class LoginFrame extends JFrame {
@@ -106,7 +106,7 @@ public class LoginFrame extends JFrame {
 
                         // 특정 조건에 따라 ManagerFrame을 열도록 설정
                         if (sId.equals("MirimManager") && password.equals("alflarhkgkrrh")) 
-                            openManagerFrame();
+                            openMChooseFrame();
                          else 
                             openChooseFrame();
                         
@@ -154,9 +154,9 @@ public class LoginFrame extends JFrame {
         new ChooseFrame();
     }
     
-    private void openManagerFrame() {
+    private void openMChooseFrame() {
     	dispose();
-    	new ManagerFrame();
+    	new MChooseFrame();
     }
 
 }
