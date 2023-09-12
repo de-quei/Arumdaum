@@ -10,10 +10,17 @@ public class LoginFrame extends JFrame {
 	boolean loginvaild = false;
 
 	//배경 이미지 상대경로
-    JLabel LoginBackground = new JLabel(new ImageIcon("./img/loginframe.png"));
+    
     JTextField sIdText = new JTextField();
     JPasswordField pwText = new JPasswordField();
+    
     JButton loginBtn = new JButton("로그인");
+    
+    JLabel LoginBackground = new JLabel(new ImageIcon("./img/loginframe.png"));
+    JLabel title = new JLabel("\"아름다움\"");
+    JLabel subheading = new JLabel(": 책 속에 모든 과거의 영혼이 잠들어 있다.");
+    JLabel studentId = new JLabel("학번");
+    JLabel password = new JLabel("비밀번호");
 
     public LoginFrame() {
         initailzeUI();
@@ -33,18 +40,15 @@ public class LoginFrame extends JFrame {
     }
     
     private void addComponentsUI() {
-    	JLabel title = new JLabel("\"아름다움\"");
     	title.setBounds(511, 212, 170, 49); 
     	title.setFont(new Font("Gowun Batang", Font.PLAIN, 32)); 
     	title.setForeground(Color.decode("#1E6525")); 
     	add(title);
     	
-    	JLabel subheading = new JLabel(": 책 속에 모든 과거의 영혼이 잠들어 있다.");
     	subheading.setBounds(511, 260, 300, 24);
     	subheading.setFont(new Font("Gowun Batang", Font.PLAIN, 16));
     	add(subheading);
     	
-    	JLabel studentId = new JLabel("학번");
     	studentId.setBounds(458, 316, 33, 24);
     	studentId.setFont(new Font("Gowun Batang", Font.PLAIN, 16));
     	add(studentId);
@@ -55,7 +59,6 @@ public class LoginFrame extends JFrame {
         sIdText.setFont(new Font("Gowun Batang", Font.PLAIN, 18)); // 입력받을 때, 문자 크기 및 폰트 설정
         add(sIdText);
 
-        JLabel password = new JLabel("비밀번호");
     	password.setBounds(427, 379, 65, 24);
     	password.setFont(new Font("Gowun Batang", Font.PLAIN, 16));
     	add(password);
@@ -145,7 +148,7 @@ public class LoginFrame extends JFrame {
         // 기존의 창을 지우고
         dispose();
         // LibraryFrmae()을 호출한다.
-        new LibraryFrame();
+        new ChooseFrame();
     }
     
     private void openManagerFrame() {
