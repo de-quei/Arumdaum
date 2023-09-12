@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -98,5 +99,26 @@ public class LibraryFrame extends JFrame{
 		Student_Info.setBorder(new LineBorder(Color.decode("#E1E1E1")));
 		
 		add(Student_Info);
+		
+		// TODO: 데이터베이스를 연동하여 할 것
+		Object[][] tableData = {
+			    {"1", "20230726", "잠자는 죽음을 깨워 길을 물었다.", "접수완료"},
+			    {"2", "20230403", "맑은 날이 아니어서 오히려 좋아.", "배송중"},
+			    {"3", "20221214", "우리가 살 수 없는 미래", "입고완료"},
+			    {"4", "20220927", "나의 히어로 아카데미아", "승인거절"}
+			};
+
+			// JTable 열 이름
+			String[] columnNames = {"순번", "신청일자", "도서제목", "현황"};
+
+			// JTable 생성
+			JTable status = new JTable(tableData, columnNames);
+			status.setBounds(882, 321, 368, 366); // 크기와 위치 설정
+
+			// JScrollPane에 JTable 추가
+			JScrollPane scrollPane1 = new JScrollPane(status);
+			scrollPane1.setBounds(882, 321, 368, 366); // JScrollPane 크기와 위치 설정
+
+			add(scrollPane1); // 프레임에 JScrollPane 추가
 	}
 }
