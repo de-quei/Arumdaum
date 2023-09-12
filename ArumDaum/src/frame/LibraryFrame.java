@@ -16,11 +16,14 @@ import javax.swing.border.LineBorder;
 public class LibraryFrame extends JFrame{
 	
 	JPanel header = new JPanel();
-	JLabel header_label = new JLabel("\"아름다움\"");
-	JButton logoutBtn = new JButton("로그아웃");
 	JPanel BookCategory = new JPanel();
+	JPanel wiseSaying = new JPanel();
+	
+	JLabel header_label = new JLabel("\"아름다움\"");
 	JLabel categoryLabel = new JLabel("책 카테고리");
-    
+	
+	JButton logoutBtn = new JButton("로그아웃");
+	
 	public LibraryFrame() {
 		initializeUI();
 		addComponentsUI();
@@ -32,6 +35,7 @@ public class LibraryFrame extends JFrame{
     	// 창 초기설정
 		setSize(1290, 750);
         setResizable(false);
+        setBackground(Color.WHITE);
         setTitle("아름다움");
         setLocationRelativeTo(null);
     }
@@ -79,5 +83,11 @@ public class LibraryFrame extends JFrame{
 		scrollPane.setBounds(34, 122, 170, 280);
 		
 		add(scrollPane);
+		
+		// TODO 파일 입출력, 혹은 데이터베이스를 통한 랜덤한 명언이 나올 자리 
+		wiseSaying.setBounds(34, 416, 170, 271);
+		wiseSaying.setBackground(Color.RED); 
+
+		add(wiseSaying); 
 	}
 }
