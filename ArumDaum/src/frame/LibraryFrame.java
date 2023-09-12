@@ -18,6 +18,7 @@ public class LibraryFrame extends JFrame{
 	JPanel header = new JPanel();
 	JPanel BookCategory = new JPanel();
 	JPanel wiseSaying = new JPanel();
+	JPanel Student_Info = new JPanel();
 	
 	JLabel header_label = new JLabel("\"아름다움\"");
 	JLabel categoryLabel = new JLabel("책 카테고리");
@@ -47,7 +48,8 @@ public class LibraryFrame extends JFrame{
 		// 헤더 초기 설정
 		header.setSize(1280, 48);
 		header.setLocation(0, 0);
-		header.setBorder(new LineBorder(Color.BLACK));
+		header.setBorder(new LineBorder(Color.decode("#E1E1E1")));
+		header.setBackground(Color.WHITE);
 		
 		// 헤더에 텍스트 label 추가
 		header_label.setFont(new Font("Gowun Batang", Font.PLAIN, 25));
@@ -84,10 +86,17 @@ public class LibraryFrame extends JFrame{
 		
 		add(scrollPane);
 		
-		// TODO 파일 입출력, 혹은 데이터베이스를 통한 랜덤한 명언이 나올 자리 
+		// 파일 입출력, 혹은 데이터베이스를 통한 랜덤한 명언이 나올 자리 
 		wiseSaying.setBounds(34, 416, 170, 271);
 		wiseSaying.setBackground(Color.RED); 
 
 		add(wiseSaying); 
+		
+		// 학생의 정보를 조회할 수 있는 panel 
+		Student_Info.setBounds(882, 85, 368, 217);
+		Student_Info.setBackground(Color.WHITE);
+		Student_Info.setBorder(new LineBorder(Color.decode("#E1E1E1")));
+		
+		add(Student_Info);
 	}
 }
