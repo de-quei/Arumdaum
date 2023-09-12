@@ -78,30 +78,46 @@ public class LoginFrame extends JFrame {
     }
     
     private void eventHandler() {
-    	// 로그인 버튼에 대한 액션리스너
+        // 로그인 버튼에 대한 액션 리스너
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	int class_num = Integer.parseInt(sIdText.getText()); // 숫자형으로 받는다.
+                String sIdTextValue = sIdText.getText();
                 String password = new String(pwText.getPassword());
 
-                // 로그인 성공
-                if (validateLogin(class_num, password)) {
-                    // TODO : 로그인에 대한 여러 경우의 수 고려하기
-                	// 1. 미입력시 알림 / 아이디 및 비밀번호 오류 / 올바르지 못한 데이터형 입력
-                	loginvaild = true;
-                    System.out.println("로그인 성공");
-                    //로그인이 성공하면 libraryFrame()을 호출한다.
-                    openLibraryFrame();
-                // 로그인 실패
-                }else {
-                    System.out.println("로그인 실패");
+                // 학번 입력란이 비어있는지 확인
+                if (sIdTextValue.isEmpty()) {
+                    JOptionPane.showMessageDialog(LoginFrame.this, "학번을 입력하세요.", "오류", JOptionPane.ERROR_MESSAGE);
+                    return; // 입력이 비어있다면 로그인 시도 중단
+                }
+
+                try {
+
+                    // 로그인 성공
+                    if (validateLogin(sIdTextValue, password)) {
+                        loginvaild = true;
+                        System.out.println("로그인 성공");
+
+                        // 특정 조건에 따라 ManagerFrame을 열도록 설정
+                        if (sIdTextValue.equals("MirimManager") && password.equals("alflarhkgkrrh")) 
+                            openManagerFrame();
+                         else 
+                            openLibraryFrame();
+                        
+                    } else {
+                        System.out.println("로그인 실패");
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(LoginFrame.this, "올바른 학번을 입력하세요.", "오류", JOptionPane.ERROR_MESSAGE);
+                    sIdText.setText(""); // 입력 필드 초기화
+                    pwText.setText("");  // 비밀번호 필드 초기화
                 }
             }
         });
     }
+
     
-    private boolean validateLogin(int class_num, String password) {
+    private boolean validateLogin(String class_num, String password) {
         try {
         	// 데이터베이스 정보
             String dbURL = "jdbc:mysql://localhost:3306/arumdaum?serverTimezone=UTC"; 
@@ -113,7 +129,7 @@ public class LoginFrame extends JFrame {
 
             String query = "SELECT * FROM student_info WHERE class_num = ? AND password = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, class_num);
+            statement.setString(1, class_num);
             statement.setString(2, password);
 
             ResultSet resultSet = statement.executeQuery();
@@ -130,6 +146,11 @@ public class LoginFrame extends JFrame {
         dispose();
         // LibraryFrmae()을 호출한다.
         new LibraryFrame();
+    }
+    
+    private void openManagerFrame() {
+    	dispose();
+    	new ManagerFrame();
     }
 
 }
