@@ -1,7 +1,6 @@
 package Student;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,16 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-public class BookApplicationFrame extends JFrame{
+public class BookSearchFrame extends JFrame{
 	
-	TitledBorder Title = new TitledBorder(new LineBorder(Color.BLACK), "도서 신청"); // border
+	TitledBorder Title = new TitledBorder(new LineBorder(Color.BLACK), "도서 검색"); // border
 	
 	JPanel borderPanel = new JPanel(); // border를 넣을 panel
 	JPanel buttonPanel = new JPanel(); // button을 넣을 panel
 	
 	JButton backBtn = new JButton("이전으로"); // 이전 버튼
 	
-	public BookApplicationFrame() {
+	public BookSearchFrame() {
 		initializeUI();
 		addComponentsUI();
 		eventHandler();
