@@ -11,8 +11,8 @@ import javax.swing.border.LineBorder;
 
 public class ChooseFrame extends JFrame {
 	
-    JButton search = new JButton("도서 검색");
-    JButton check = new JButton("도서 현황");
+    JButton application = new JButton("도서 신청");
+    JButton check = new JButton("도서 검색");
     JButton status = new JButton("신청 현황");
     JButton sInfo = new JButton("회원 정보");
     
@@ -44,23 +44,23 @@ public class ChooseFrame extends JFrame {
     	add(welcome);
     	
         // 버튼 위치 및 크기 설정
-        search.setBounds(40, 100, 100, 30);
+        application.setBounds(40, 100, 100, 30);
         check.setBounds(140, 100, 100, 30);
         status.setBounds(240, 100, 100, 30);
         sInfo.setBounds(340, 100, 100, 30);
 
         // 프레임에 버튼 추가
-        add(search);
+        add(application);
         add(check);
         add(status);
         add(sInfo);
     }
     
     private void eventHandler() {
-        search.addActionListener(new ActionListener() {
+        application.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openBookSearchFrame();
+                openBookApplicationFrame();
             }
         });
         check.addActionListener(new ActionListener() {
@@ -84,9 +84,9 @@ public class ChooseFrame extends JFrame {
         
     }
     
-    private void openBookSearchFrame() {
+    private void openBookApplicationFrame() {
     	dispose();
-    	new BookSearchFrame();
+    	new BookApplicationFrame();
     }
     
     private void openBookStatusFrame() {

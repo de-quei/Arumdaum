@@ -7,10 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-public class BookSearchFrame extends JFrame{
+public class BookApplicationFrame extends JFrame{
 	
 	TitledBorder Title = new TitledBorder(new LineBorder(Color.BLACK), "도서 신청"); // border
 	
@@ -19,7 +20,9 @@ public class BookSearchFrame extends JFrame{
 	
 	JButton backBtn = new JButton("이전으로"); // 이전 버튼
 	
-	public BookSearchFrame() {
+	JTable bookCheck = new JTable();
+	
+	public BookApplicationFrame() {
 		initializeUI();
 		addComponentsUI();
 		eventHandler();
@@ -44,7 +47,7 @@ public class BookSearchFrame extends JFrame{
 		add(borderPanel);
 		
 		buttonPanel.setBounds(20, 410, 440, 40);
-		buttonPanel.setBorder(new LineBorder(Color.BLACK));
+		//buttonPanel.setBorder(new LineBorder(Color.BLACK));
 		add(buttonPanel);
 		
 		//panel에 이전버튼 생성
@@ -54,6 +57,8 @@ public class BookSearchFrame extends JFrame{
 	}
 	
 	private void eventHandler() {
+		
+		//이전버튼
 		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
