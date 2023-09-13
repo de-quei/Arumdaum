@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 public class MChooseFrame extends JFrame {
 
-	JButton sInfo = new JButton("회원 정보");
+	JButton sInfo = new JButton("회원 관리");
     JButton search = new JButton("도서 등록");
     JButton check = new JButton("도서 현황");
     JButton status = new JButton("신청 현황");
