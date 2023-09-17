@@ -66,7 +66,6 @@ public class BookApplicationFrame extends JFrame{
     }
 	
 	private void addComponentsUI() {
-		
 		//border panel
 		borderPanel.setBounds(20, 20, 440, 380);
 		borderPanel.setBorder(new TitledBorder(new LineBorder(Color.BLACK), "도서 신청"));
