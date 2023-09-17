@@ -3,24 +3,30 @@ package Student;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 public class ChooseFrame extends JFrame {
 	
-    JButton application = new JButton("도서 신청");
-    JButton search = new JButton("도서 검색");
-    JButton status = new JButton("신청 현황");
-    JButton sInfo = new JButton("회원 정보");
+    JButton applicationBtn = new JButton("도서 신청");
+    JButton searchBtn = new JButton("도서 검색");
+    JButton statusBtn = new JButton("신청 현황");
+    JButton sInfoBtn = new JButton("회원 정보");
     
-    JPanel welcome = new JPanel();
+    JPanel welcomePanel = new JPanel();
+    JTextArea welcomeTextArea = new JTextArea();
 
     public ChooseFrame() {
         initializeUI();
         addComponentsUI();
+        displayWelcomeTextFromFile();
         eventHandler();
         setVisible(true);
     }
@@ -36,52 +42,69 @@ public class ChooseFrame extends JFrame {
     }
 
     private void addComponentsUI() {
-    	
-    	// TODO : 명언이 나올 패널 (파일 입출력 혹은 데이터베이스)
-    	welcome.setBounds(40, 25, 400, 70);
-    	welcome.setBorder(new LineBorder(Color.BLACK, 1));
-    	welcome.setBackground(Color.WHITE);
-    	add(welcome);
+    	// 텍스트를 표시할 TextArea
+    	welcomeTextArea.setBounds(40, 25, 400, 70);
+    	welcomeTextArea.setLineWrap(true); //자동 줄바꾸기
+    	welcomePanel.setBorder(new LineBorder(Color.BLACK));
+    	welcomePanel.setBounds(40, 25, 400, 70);
+    	welcomePanel.add(welcomeTextArea);
+    	add(welcomePanel);
     	
         // 버튼 위치 및 크기 설정
-        application.setBounds(40, 100, 100, 30);
-        search.setBounds(140, 100, 100, 30);
-        status.setBounds(240, 100, 100, 30);
-        sInfo.setBounds(340, 100, 100, 30);
+        applicationBtn.setBounds(40, 100, 100, 30);
+        searchBtn.setBounds(140, 100, 100, 30);
+        statusBtn.setBounds(240, 100, 100, 30);
+        sInfoBtn.setBounds(340, 100, 100, 30);
 
         // 프레임에 버튼 추가
-        add(application);
-        add(search);
-        add(status);
-        add(sInfo);
+        add(applicationBtn);
+        add(searchBtn);
+        add(statusBtn);
+        add(sInfoBtn);
     }
     
     private void eventHandler() {
-        application.addActionListener(new ActionListener() {
+        applicationBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 openBookApplicationFrame();
             }
         });
-        search.addActionListener(new ActionListener() {
+        searchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	openBookSearchFrame();
             }
         });
-        status.addActionListener(new ActionListener() {
+        statusBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	openApplicationStatusFrame();
             }
         });
-        sInfo.addActionListener(new ActionListener() {
+        sInfoBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	openStudentInfoFrame();
             }
         });
         
+    }
+    
+    private void displayWelcomeTextFromFile() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("./file/text3.txt"));
+            StringBuilder text = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                text.append(line).append("\n");
+            }
+            reader.close();
+            welcomeTextArea.setText(text.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            welcomeTextArea.setText("Failed to load welcome text from file.");
+        }
     }
     
     private void openBookApplicationFrame() {

@@ -140,7 +140,6 @@ public class BookApplicationFrame extends JFrame{
 	}
 	
 	private void eventHandler() {
-		
 		//이전버튼
 		backBtn.addActionListener(new ActionListener() {
 			@Override
