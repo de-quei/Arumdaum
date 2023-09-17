@@ -1,6 +1,5 @@
 package Student;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -10,9 +9,7 @@ import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
 
 public class ChooseFrame extends JFrame {
 	
@@ -24,7 +21,8 @@ public class ChooseFrame extends JFrame {
     JTextArea welcomeTextArea = new JTextArea();
     
     //텍스트 파일 이름 목록
-    String[] textFiles = {"text1.txt", "text2.txt", "text3.txt"};
+    String[] textFiles = {"text1.txt", "text2.txt", "text3.txt", "text4.txt", 
+    					  "text5.txt", "text6.txt", "text7.txt"};
 
     public ChooseFrame() {
         initializeUI();
