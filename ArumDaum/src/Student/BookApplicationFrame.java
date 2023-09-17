@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,6 +29,7 @@ public class BookApplicationFrame extends JFrame{
 	JLabel publisherLabel = new JLabel("출판사 : ");
 	JLabel categoryLabel = new JLabel("카테고리 : ");
 	JLabel priceLabel = new JLabel("가격 : ");
+	JLabel publicationYearLabel = new JLabel("출판연도 : ");
 	
     JTextField titleField = new JTextField();
     JTextField authorField = new JTextField();
@@ -38,6 +41,7 @@ public class BookApplicationFrame extends JFrame{
     					 "기술/공학", "외국어", "과학", "취업", "여행", "컴퓨터/IT"};
     
     JComboBox categoryBox = new JComboBox(category);
+    JComboBox<Integer> publicationYearBox;
 	
 	public BookApplicationFrame() {
 		initializeUI();
@@ -104,6 +108,22 @@ public class BookApplicationFrame extends JFrame{
         priceField.setBounds(120, 200, 300, 25);
         borderPanel.add(priceLabel);
         borderPanel.add(priceField);
+        
+        //출판연도 ArrayList 초기화
+        ArrayList<Integer> publicationYearList = new ArrayList<Integer>();
+        for(int year = 2023; year >= 1985; year--) {
+        	publicationYearList.add(year);
+        }
+        //출판연도 JComoboBox 초기화
+        Integer[] yearsArray = publicationYearList.toArray(new Integer[0]);
+        publicationYearBox = new JComboBox<>(yearsArray);
+        
+        //출판연도
+        publicationYearLabel.setBounds(30, 240, 80, 25);
+        publicationYearBox.setBounds(120, 240, 300, 25);
+        borderPanel.add(publicationYearLabel);
+        borderPanel.add(publicationYearBox);
+        
 	}
 	
 	private void eventHandler() {
