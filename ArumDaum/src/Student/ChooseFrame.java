@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +23,9 @@ public class ChooseFrame extends JFrame {
     
     JPanel welcomePanel = new JPanel();
     JTextArea welcomeTextArea = new JTextArea();
+    
+    //텍스트 파일 이름 목록
+    String[] textFiles = {"text1.txt", "text2.txt", "text3.txt"};
 
     public ChooseFrame() {
         initializeUI();
@@ -93,7 +97,12 @@ public class ChooseFrame extends JFrame {
     
     private void displayWelcomeTextFromFile() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("./file/text3.txt"));
+        	// 랜덤으로 텍스트 파일 나오게 함
+        	Random random = new Random();
+        	int randomIndex = random.nextInt(textFiles.length);
+        	String randomTextFile = textFiles[randomIndex];
+        	
+            BufferedReader reader = new BufferedReader(new FileReader("./file/" + randomTextFile));
             StringBuilder text = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
