@@ -2,6 +2,7 @@ package Student;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class BookApplicationFrame extends JFrame{
 	JPanel bookTitlePanel = new JPanel();
 	
 	JButton backBtn = new JButton("이전으로"); // 이전 버튼
+	JButton applicationBtn = new JButton("신청하기"); //TODO:멘트 더 생각해보기
 	
 	JLabel titleLabel = new JLabel("도서명 : ");
 	JLabel authorLabel = new JLabel("저자 : ");
@@ -30,6 +32,7 @@ public class BookApplicationFrame extends JFrame{
 	JLabel categoryLabel = new JLabel("카테고리 : ");
 	JLabel priceLabel = new JLabel("가격 : ");
 	JLabel publicationYearLabel = new JLabel("출판연도 : ");
+	JLabel applicationReasonLabel = new JLabel("신청사유 : ");
 	
     JTextField titleField = new JTextField();
     JTextField authorField = new JTextField();
@@ -42,6 +45,8 @@ public class BookApplicationFrame extends JFrame{
     
     JComboBox categoryBox = new JComboBox(category);
     JComboBox<Integer> publicationYearBox;
+    
+    TextArea reasonArea = new TextArea();
 	
 	public BookApplicationFrame() {
 		initializeUI();
@@ -68,16 +73,6 @@ public class BookApplicationFrame extends JFrame{
 		borderPanel.setBorder(new TitledBorder(new LineBorder(Color.BLACK), "도서 신청"));
 		borderPanel.setLayout(null);
 		add(borderPanel);
-		
-		//button panel
-		buttonPanel.setBounds(20, 410, 440, 40);
-		add(buttonPanel);
-		
-		//panel에 이전버튼 생성
-		backBtn.setBounds(350, 0, 90, 40);
-        
-        buttonPanel.setLayout(null);
-		buttonPanel.add(backBtn);
 		
 		//도서명
 		titleLabel.setBounds(30, 40, 80, 25);
@@ -123,6 +118,24 @@ public class BookApplicationFrame extends JFrame{
         publicationYearBox.setBounds(120, 240, 300, 25);
         borderPanel.add(publicationYearLabel);
         borderPanel.add(publicationYearBox);
+        
+        //신청사유
+        applicationReasonLabel.setBounds(30, 280, 80, 25);
+        reasonArea.setBounds(120, 280, 300, 70);
+        borderPanel.add(applicationReasonLabel);
+        borderPanel.add(reasonArea);
+        
+        //button panel
+      	buttonPanel.setBounds(20, 410, 440, 40);
+      	add(buttonPanel);
+      		
+      	applicationBtn.setBounds(250, 0, 90, 40);
+      	buttonPanel.add(applicationBtn);
+      	
+      	//panel에 이전버튼 생성
+      	backBtn.setBounds(350, 0, 90, 40);
+        buttonPanel.setLayout(null);
+      	buttonPanel.add(backBtn);
         
 	}
 	
