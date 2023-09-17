@@ -21,7 +21,6 @@ public class ChooseFrame extends JFrame {
     JButton statusBtn = new JButton("신청 현황");
     JButton sInfoBtn = new JButton("회원 정보");
     
-    JPanel welcomePanel = new JPanel();
     JTextArea welcomeTextArea = new JTextArea();
     
     //텍스트 파일 이름 목록
@@ -49,10 +48,8 @@ public class ChooseFrame extends JFrame {
     	// 텍스트를 표시할 TextArea
     	welcomeTextArea.setBounds(40, 25, 400, 70);
     	welcomeTextArea.setLineWrap(true); //자동 줄바꾸기
-    	welcomePanel.setBorder(new LineBorder(Color.BLACK));
-    	welcomePanel.setBounds(40, 25, 400, 70);
-    	welcomePanel.add(welcomeTextArea);
-    	add(welcomePanel);
+    	welcomeTextArea.setEditable(false); //textarea 수정 불가
+    	add(welcomeTextArea);
     	
         // 버튼 위치 및 크기 설정
         applicationBtn.setBounds(40, 100, 100, 30);
