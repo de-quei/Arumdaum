@@ -6,19 +6,38 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 public class BookApplicationFrame extends JFrame{
 	
-	TitledBorder Title = new TitledBorder(new LineBorder(Color.BLACK), "도서 신청"); // border
-	
 	JPanel borderPanel = new JPanel(); // border를 넣을 panel
 	JPanel buttonPanel = new JPanel(); // button을 넣을 panel
+	JPanel bookTitlePanel = new JPanel();
 	
 	JButton backBtn = new JButton("이전으로"); // 이전 버튼
+	
+	JLabel titleLabel = new JLabel("도서명 : ");
+	JLabel authorLabel = new JLabel("저자 : ");
+	JLabel publisherLabel = new JLabel("출판사 : ");
+	JLabel categoryLabel = new JLabel("카테고리 : ");
+	JLabel priceLabel = new JLabel("가격 : ");
+	
+    JTextField titleField = new JTextField();
+    JTextField authorField = new JTextField();
+    JTextField publisherField = new JTextField();
+    JTextField priceField = new JTextField();
+    
+    String[] category = {"소설", "시/에세이", "인문", "가정", "요리", "건강", "취미/실용/스포츠", 
+    					 "경제/경영", "자기계발", "정치/사회", "역사/문화", "종교", "예술/대중문화", 
+    					 "기술/공학", "외국어", "과학", "취업", "여행", "컴퓨터/IT"};
+    
+    JComboBox categoryBox = new JComboBox(category);
 	
 	public BookApplicationFrame() {
 		initializeUI();
@@ -40,12 +59,14 @@ public class BookApplicationFrame extends JFrame{
 	
 	private void addComponentsUI() {
 		
+		//border panel
 		borderPanel.setBounds(20, 20, 440, 380);
-		borderPanel.setBorder(Title); //panel에 border를 넣음.
+		borderPanel.setBorder(new TitledBorder(new LineBorder(Color.BLACK), "도서 신청"));
+		borderPanel.setLayout(null);
 		add(borderPanel);
 		
+		//button panel
 		buttonPanel.setBounds(20, 410, 440, 40);
-		//buttonPanel.setBorder(new LineBorder(Color.BLACK));
 		add(buttonPanel);
 		
 		//panel에 이전버튼 생성
@@ -53,6 +74,36 @@ public class BookApplicationFrame extends JFrame{
         
         buttonPanel.setLayout(null);
 		buttonPanel.add(backBtn);
+		
+		//도서명
+		titleLabel.setBounds(30, 40, 80, 25);
+        titleField.setBounds(120, 40, 300, 25);
+        borderPanel.add(titleLabel);
+        borderPanel.add(titleField);
+        
+        //저자
+        authorLabel.setBounds(30, 80, 80, 25);
+        authorField.setBounds(120, 80, 300, 25);
+        borderPanel.add(authorLabel);
+        borderPanel.add(authorField);
+        
+        //출판사
+        publisherLabel.setBounds(30, 120, 80, 25);
+        publisherField.setBounds(120, 120, 300, 25);
+        borderPanel.add(publisherLabel);
+        borderPanel.add(publisherField);
+        
+        //카테고리
+        categoryLabel.setBounds(30, 160, 80, 25);
+        categoryBox.setBounds(120, 160, 300, 25);
+        borderPanel.add(categoryLabel);
+        borderPanel.add(categoryBox);
+        
+        //가격
+        priceLabel.setBounds(30, 200, 80, 25);
+        priceField.setBounds(120, 200, 300, 25);
+        borderPanel.add(priceLabel);
+        borderPanel.add(priceField);
 	}
 	
 	private void eventHandler() {
