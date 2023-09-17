@@ -21,7 +21,6 @@ public class BookApplicationFrame extends JFrame{
 	
 	JPanel borderPanel = new JPanel(); // border를 넣을 panel
 	JPanel buttonPanel = new JPanel(); // button을 넣을 panel
-	JPanel bookTitlePanel = new JPanel();
 	
 	JButton backBtn = new JButton("이전으로"); // 이전 버튼
 	JButton applicationBtn = new JButton("신청하기"); //TODO:멘트 더 생각해보기
