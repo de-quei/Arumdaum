@@ -59,7 +59,7 @@ public class BookSearchFrame extends JFrame{
 	private void addComponentsUI() {
 		
 		borderPanel.setBounds(20, 20, 440, 380);
-		borderPanel.setBorder(new TitledBorder(new LineBorder(Color.BLACK), "도서 신청"));
+		borderPanel.setBorder(new TitledBorder(new LineBorder(Color.BLACK), "도서 검색"));
 		borderPanel.setLayout(null);
 		add(borderPanel);
 		
