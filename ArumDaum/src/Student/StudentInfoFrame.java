@@ -23,6 +23,7 @@ public class StudentInfoFrame extends JFrame{
 	
 	JButton backBtn = new JButton("이전으로");
 	JButton modifyBtn = new JButton("수정하기");
+	JButton logoutBtn = new JButton("로그아웃");
 	JButton uploadImageBtn = new JButton("사진 업로드");
 	
 	JLabel nameLabel = new JLabel("이름 :");
@@ -103,16 +104,20 @@ public class StudentInfoFrame extends JFrame{
 		
 		//button panel
       	buttonPanel.setBounds(20, 410, 440, 40);
+      	buttonPanel.setLayout(null);
       	add(buttonPanel);
       	
       	//수정하기 버튼
-      	modifyBtn.setBounds(250, 0, 90, 40);
+      	modifyBtn.setBounds(150, 0, 90, 40);
       	buttonPanel.add(modifyBtn);
       	
-      	//panel에 이전버튼 생성
-      	backBtn.setBounds(350, 0, 90, 40);
-        buttonPanel.setLayout(null);
+      	//이전버튼
+      	backBtn.setBounds(250, 0, 90, 40);
       	buttonPanel.add(backBtn);
+      	
+        //로그아웃 버튼
+      	logoutBtn.setBounds(350, 0, 90, 40);
+      	buttonPanel.add(logoutBtn);
 	}
 	
 	private void eventHandler() {
