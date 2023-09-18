@@ -1,6 +1,7 @@
 package Student;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -21,6 +22,7 @@ public class StudentInfoFrame extends JFrame{
 	JPanel buttonPanel = new JPanel();
 	
 	JButton backBtn = new JButton("이전으로");
+	JButton modifyBtn = new JButton("수정하기");
 	JButton uploadImageBtn = new JButton("사진 업로드");
 	
 	JLabel nameLabel = new JLabel("이름 :");
@@ -28,7 +30,6 @@ public class StudentInfoFrame extends JFrame{
 	JLabel passwordLabel = new JLabel("비밀번호 :");
 	JLabel emailLabel = new JLabel("E-MAIL :");
 	JLabel phoneLabel = new JLabel("전화번호 :");
-	JLabel imageLabel = new JLabel("프로필 사진 :");
 	JLabel uploadedImageLabel = new JLabel(); // 이미지를 표시할 JLabel
 	
 	JTextField nameField = new JTextField();
@@ -93,13 +94,11 @@ public class StudentInfoFrame extends JFrame{
 		borderPanel.add(phoneField);
 		
 		//프로필 사진 업로드 버튼
-        imageLabel.setBounds(30, 240, 90, 25);
-        uploadImageBtn.setBounds(130, 240, 120, 25);
-        borderPanel.add(imageLabel);
+        uploadImageBtn.setBounds(290, 240, 100, 30);
         borderPanel.add(uploadImageBtn);
         
         //이미지가 뜨는 라벨
-        uploadedImageLabel.setBounds(130, 280, 100, 70); // 이미지 크기와 위치를 조절해주세요.
+        uploadedImageLabel.setBounds(290, 100, 100, 130); // 이미지 크기와 위치를 조절해주세요.
         borderPanel.add(uploadedImageLabel);
 		
 		//button panel
@@ -132,7 +131,8 @@ public class StudentInfoFrame extends JFrame{
                     File selectedFile = fileChooser.getSelectedFile();
                     
                     // 선택한 이미지를 JLabel에 표시
-                    ImageIcon imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
+                    ImageIcon imageIcon = new ImageIcon(new ImageIcon(selectedFile.getAbsolutePath())
+                            .getImage().getScaledInstance(uploadedImageLabel.getWidth(), uploadedImageLabel.getHeight(), Image.SCALE_DEFAULT));
                     uploadedImageLabel.setIcon(imageIcon);
                 }
             }
