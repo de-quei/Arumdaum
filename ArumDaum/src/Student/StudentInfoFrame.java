@@ -64,41 +64,41 @@ public class StudentInfoFrame extends JFrame{
 		add(borderPanel);
 		
 		//이름
-		nameLabel.setBounds(30, 40, 50, 25);
-		nameField.setBounds(130, 40, 120, 25);
+		nameLabel.setBounds(30, 90, 50, 25);
+		nameField.setBounds(130, 90, 120, 25);
 		borderPanel.add(nameLabel);
 		borderPanel.add(nameField);
 		
 		//학번
-		gradeLabel.setBounds(30, 80, 50, 25);
-		gradeField.setBounds(130, 80, 120, 25);
+		gradeLabel.setBounds(30, 130, 50, 25);
+		gradeField.setBounds(130, 130, 120, 25);
 		borderPanel.add(gradeLabel);
 		borderPanel.add(gradeField);
 		
 		//비밀번호
-		passwordLabel.setBounds(30, 120, 70, 25);
-		passwordField.setBounds(130, 120, 120, 25);
+		passwordLabel.setBounds(30, 170, 70, 25);
+		passwordField.setBounds(130, 170, 120, 25);
 		borderPanel.add(passwordLabel);
 		borderPanel.add(passwordField);
 		
 		//이메일
-		emailLabel.setBounds(30, 160, 50, 25);
-		emailField.setBounds(130, 160, 120, 25);
+		emailLabel.setBounds(30, 210, 50, 25);
+		emailField.setBounds(130, 210, 120, 25);
 		borderPanel.add(emailLabel);
 		borderPanel.add(emailField);
 		
 		//전화번호
-		phoneLabel.setBounds(30, 200, 70, 25);
-		phoneField.setBounds(130, 200, 120, 25);
+		phoneLabel.setBounds(30, 250, 70, 25);
+		phoneField.setBounds(130, 250, 120, 25);
 		borderPanel.add(phoneLabel);
 		borderPanel.add(phoneField);
 		
 		//프로필 사진 업로드 버튼
-        uploadImageBtn.setBounds(290, 240, 100, 30);
+        uploadImageBtn.setBounds(290, 250, 100, 30);
         borderPanel.add(uploadImageBtn);
         
         //이미지가 뜨는 라벨
-        uploadedImageLabel.setBounds(290, 100, 100, 130); // 이미지 크기와 위치를 조절해주세요.
+        uploadedImageLabel.setBounds(290, 90, 100, 130); // 이미지 크기와 위치를 조절해주세요.
         borderPanel.add(uploadedImageLabel);
 		
 		//button panel
