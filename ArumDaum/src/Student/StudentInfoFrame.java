@@ -94,7 +94,7 @@ public class StudentInfoFrame extends JFrame{
 		borderPanel.add(phoneField);
 		
 		//프로필 사진 업로드 버튼
-        uploadImageBtn.setBounds(290, 250, 100, 30);
+        uploadImageBtn.setBounds(290, 245, 100, 30);
         borderPanel.add(uploadImageBtn);
         
         //이미지가 뜨는 라벨
@@ -104,6 +104,10 @@ public class StudentInfoFrame extends JFrame{
 		//button panel
       	buttonPanel.setBounds(20, 410, 440, 40);
       	add(buttonPanel);
+      	
+      	//수정하기 버튼
+      	modifyBtn.setBounds(250, 0, 90, 40);
+      	buttonPanel.add(modifyBtn);
       	
       	//panel에 이전버튼 생성
       	backBtn.setBounds(350, 0, 90, 40);
