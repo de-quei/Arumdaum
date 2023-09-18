@@ -146,6 +146,7 @@ public class StudentInfoFrame extends JFrame{
                 }
             }
         });
+        
 	}
 	
 	private void openChooseFrame() {
