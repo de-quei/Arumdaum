@@ -5,6 +5,10 @@ import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +50,12 @@ public class BookApplicationFrame extends JFrame{
     JComboBox<Integer> publicationYearBox;
     
     TextArea reasonArea = new TextArea();
+    
+ // 데이터베이스 연결 문자열에 시간대 설정 추가
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "0000";
+
 	
 	public BookApplicationFrame() {
 		initializeUI();
@@ -144,6 +154,50 @@ public class BookApplicationFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				openChooseFrame();
 			}
+		});
+		
+		applicationBtn.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // 사용자가 입력한 정보 가져오기
+		        String title = titleField.getText();
+		        String author = authorField.getText();
+		        String publisher = publisherField.getText();
+		        String category = categoryBox.getSelectedItem().toString();
+		        double price = Double.parseDouble(priceField.getText());
+		        int publicationYear = (int) publicationYearBox.getSelectedItem();
+		        String applicationReason = reasonArea.getText();
+
+		        // 데이터베이스 연결 및 데이터 저장
+		        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+		            // 쿼리 작성
+		            String insertQuery = "INSERT INTO bookApplication (title, author, publisher, category, price, publicationYear, reason) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+		            // PreparedStatement 생성
+		            try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+		                preparedStatement.setString(1, title);
+		                preparedStatement.setString(2, author);
+		                preparedStatement.setString(3, publisher);
+		                preparedStatement.setString(4, category);
+		                preparedStatement.setDouble(5, price);
+		                preparedStatement.setInt(6, publicationYear);
+		                preparedStatement.setString(7, applicationReason);
+
+		                // 쿼리 실행
+		                int rowsAffected = preparedStatement.executeUpdate();
+		                if (rowsAffected > 0) {
+		                    // 저장 성공
+		                    System.out.println("도서 신청이 성공적으로 저장되었습니다.");
+		                } else {
+		                    // 저장 실패
+		                    System.out.println("도서 신청 저장에 실패했습니다.");
+		                }
+		            }
+		        } catch (SQLException ex) {
+		            // 데이터베이스 연결 오류 처리
+		            ex.printStackTrace();
+		        }
+		    }
 		});
 	}
 	
