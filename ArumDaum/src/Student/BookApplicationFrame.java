@@ -174,6 +174,9 @@ public class BookApplicationFrame extends JFrame{
 		        if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || category.isEmpty() || priceText.isEmpty() || publicationYearText.isEmpty() || applicationReason.isEmpty()) {
 		            // 입력값 중 하나라도 비어있으면 알람창 띄우기
 		            JOptionPane.showMessageDialog(null, "모든 필드에 값을 입력해주세요.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+		        } else if (applicationReason.length() > 255) {
+		            // 신청사유가 255자를 초과하면 알람창 띄우기
+		            JOptionPane.showMessageDialog(null, "신청사유는 255자 이하여야 합니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
 		        } else {
 		            // 데이터베이스 연결 및 데이터 저장
 		            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
@@ -194,9 +197,11 @@ public class BookApplicationFrame extends JFrame{
 		                    int rowsAffected = preparedStatement.executeUpdate();
 		                    if (rowsAffected > 0) {
 		                        // 저장 성공
+		                    	JOptionPane.showMessageDialog(null, "정상적으로 접수되었습니다.", "신청 완료", JOptionPane.INFORMATION_MESSAGE);
 		                        System.out.println("도서 신청이 성공적으로 저장되었습니다.");
 		                    } else {
 		                        // 저장 실패
+		                    	JOptionPane.showMessageDialog(null, "다시 시도하여주십시오.", "신청 실패", JOptionPane.ERROR_MESSAGE);
 		                        System.out.println("도서 신청 저장에 실패했습니다.");
 		                    }
 		                }
@@ -207,6 +212,7 @@ public class BookApplicationFrame extends JFrame{
 		        }
 		    }
 		});
+
 
 	}
 	
