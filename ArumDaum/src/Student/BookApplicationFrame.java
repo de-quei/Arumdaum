@@ -174,14 +174,14 @@ public class BookApplicationFrame extends JFrame{
 		        if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || category.isEmpty() || priceText.isEmpty() || publicationYearText.isEmpty() || applicationReason.isEmpty()) {
 		            // 입력값 중 하나라도 비어있으면 알람창 띄우기
 		            JOptionPane.showMessageDialog(null, "모든 필드에 값을 입력해주세요.", "입력 오류", JOptionPane.ERROR_MESSAGE);
-		        } else if (applicationReason.length() > 255) {
+		        } else if (applicationReason.length() >= 255) {
 		            // 신청사유가 255자를 초과하면 알람창 띄우기
 		            JOptionPane.showMessageDialog(null, "신청사유는 255자 이하여야 합니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
 		        } else {
 		            // 데이터베이스 연결 및 데이터 저장
 		            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
 		                // 쿼리 작성
-		                String insertQuery = "INSERT INTO bookApplication (title, author, publisher, category, price, publicationYear, applicationReason) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		                String insertQuery = "INSERT INTO bookApplication (title, author, publisher, category, price, publicationYear, reason) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		                // PreparedStatement 생성
 		                try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {

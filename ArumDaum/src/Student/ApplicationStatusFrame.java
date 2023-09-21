@@ -3,6 +3,10 @@ package Student;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class ApplicationStatusFrame extends JFrame{
 	
@@ -21,21 +26,16 @@ public class ApplicationStatusFrame extends JFrame{
 	
 	JButton backBtn = new JButton("이전으로");
 	
-	//임시데이터입니다.
-    String[] header = {"순번", "도서명", "신청일자", "카테고리", "신청현황"};
-    String[][] contents = {
-    		{"3", "잠자는 죽음을 깨워 길을 물었다.", "2023.09.18", "역사", "접수완료"},
-    		{"2", "맑은 날이 아니어서 오히려 좋아.", "2023.04.25", "에세이", "입고완료"},
-    		{"1", "나의 히어로 아카데미아", "2022.12.01", "만화", "승인거절"}
-    };
-    
-    JTable statusTable = new JTable(contents, header); // 검색 결과를 표시할 테이블
-	
-	
+	// JTable 모델
+	String[] header = {"순번", "도서명", "카테고리", "신청현황"}; // 중간에 신청일자..
+	DefaultTableModel tableModel = new DefaultTableModel(header, 0);
+	JTable statusTable = new JTable(tableModel);
+
 	public ApplicationStatusFrame() {
 		initializeUI();
 		addComponentsUI();
 		eventHandler();
+		loadApplicationStatus();
 		setVisible(true);
 	}
 	
@@ -84,4 +84,36 @@ public class ApplicationStatusFrame extends JFrame{
 		dispose();
 		new ChooseFrame();
 	}
+	
+	private void loadApplicationStatus() {
+        // 데이터베이스 연결 정보
+		String DB_URL = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
+        String DB_USER = "root";
+        String DB_PASSWORD = "0000";
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            Statement statement = connection.createStatement();
+            String selectQuery = "SELECT * FROM bookApplication";
+
+            ResultSet resultSet = statement.executeQuery(selectQuery);
+
+            // JTable 모델 초기화
+            tableModel.setRowCount(0);
+
+            // 결과셋을 JTable에 추가
+            while (resultSet.next()) {
+                String[] rowData = {
+                		//TODO:null은 나중에 구현할 것
+                        resultSet.getString("id"),
+                        resultSet.getString("title"),
+                        //resultSet.getString(null),
+                        resultSet.getString("category"),
+                        //resultSet.getString(null)
+                };
+                tableModel.addRow(rowData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
