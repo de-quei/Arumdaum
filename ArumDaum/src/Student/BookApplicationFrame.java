@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -156,6 +157,7 @@ public class BookApplicationFrame extends JFrame{
 			}
 		});
 		
+		// 신청하기 버튼의 Action 리스너
 		applicationBtn.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
@@ -164,41 +166,48 @@ public class BookApplicationFrame extends JFrame{
 		        String author = authorField.getText();
 		        String publisher = publisherField.getText();
 		        String category = categoryBox.getSelectedItem().toString();
-		        double price = Double.parseDouble(priceField.getText());
-		        int publicationYear = (int) publicationYearBox.getSelectedItem();
+		        String priceText = priceField.getText();
+		        String publicationYearText = publicationYearBox.getSelectedItem().toString();
 		        String applicationReason = reasonArea.getText();
 
-		        // 데이터베이스 연결 및 데이터 저장
-		        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-		            // 쿼리 작성
-		            String insertQuery = "INSERT INTO bookApplication (title, author, publisher, category, price, publicationYear, reason) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		        // 입력값이 비어있는지 확인
+		        if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || category.isEmpty() || priceText.isEmpty() || publicationYearText.isEmpty() || applicationReason.isEmpty()) {
+		            // 입력값 중 하나라도 비어있으면 알람창 띄우기
+		            JOptionPane.showMessageDialog(null, "모든 필드에 값을 입력해주세요.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+		        } else {
+		            // 데이터베이스 연결 및 데이터 저장
+		            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+		                // 쿼리 작성
+		                String insertQuery = "INSERT INTO bookApplication (title, author, publisher, category, price, publicationYear, applicationReason) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-		            // PreparedStatement 생성
-		            try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-		                preparedStatement.setString(1, title);
-		                preparedStatement.setString(2, author);
-		                preparedStatement.setString(3, publisher);
-		                preparedStatement.setString(4, category);
-		                preparedStatement.setDouble(5, price);
-		                preparedStatement.setInt(6, publicationYear);
-		                preparedStatement.setString(7, applicationReason);
+		                // PreparedStatement 생성
+		                try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+		                    preparedStatement.setString(1, title);
+		                    preparedStatement.setString(2, author);
+		                    preparedStatement.setString(3, publisher);
+		                    preparedStatement.setString(4, category);
+		                    preparedStatement.setDouble(5, Double.parseDouble(priceText));
+		                    preparedStatement.setInt(6, Integer.parseInt(publicationYearText));
+		                    preparedStatement.setString(7, applicationReason);
 
-		                // 쿼리 실행
-		                int rowsAffected = preparedStatement.executeUpdate();
-		                if (rowsAffected > 0) {
-		                    // 저장 성공
-		                    System.out.println("도서 신청이 성공적으로 저장되었습니다.");
-		                } else {
-		                    // 저장 실패
-		                    System.out.println("도서 신청 저장에 실패했습니다.");
+		                    // 쿼리 실행
+		                    int rowsAffected = preparedStatement.executeUpdate();
+		                    if (rowsAffected > 0) {
+		                        // 저장 성공
+		                        System.out.println("도서 신청이 성공적으로 저장되었습니다.");
+		                    } else {
+		                        // 저장 실패
+		                        System.out.println("도서 신청 저장에 실패했습니다.");
+		                    }
 		                }
+		            } catch (SQLException ex) {
+		                // 데이터베이스 연결 오류 처리
+		                ex.printStackTrace();
 		            }
-		        } catch (SQLException ex) {
-		            // 데이터베이스 연결 오류 처리
-		            ex.printStackTrace();
 		        }
 		    }
 		});
+
 	}
 	
 	private void openChooseFrame() {
