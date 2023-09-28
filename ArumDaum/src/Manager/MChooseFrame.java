@@ -1,13 +1,19 @@
 package Manager;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Student.BookApplicationFrame;
+import Student.ChooseFrame;
+
 public class MChooseFrame extends JFrame {
 
 	JButton sInfo = new JButton("회원 관리");
-    JButton search = new JButton("도서 등록");
+    JButton registration = new JButton("도서 등록");
     JButton check = new JButton("도서 현황");
     JButton status = new JButton("신청 현황");
     
@@ -33,20 +39,30 @@ public class MChooseFrame extends JFrame {
     private void addComponentsUI() {
     	
         // 버튼 위치 및 크기 설정
-        search.setBounds(40, 60, 100, 30);
+        registration.setBounds(40, 60, 100, 30);
         check.setBounds(140, 60, 100, 30);
         status.setBounds(240, 60, 100, 30);
         sInfo.setBounds(340, 60, 100, 30);
 
         // 프레임에 버튼 추가
-        add(search);
+        add(registration);
         add(check);
         add(status);
         add(sInfo);
     }
     
     private void eventHandler() {
-    	
+    	registration.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openBookRegistrationFrame();
+            }
+        });
+    }
+    
+    private void openBookRegistrationFrame() {
+    	dispose();
+    	new BookRegistration();
     }
     
 }
