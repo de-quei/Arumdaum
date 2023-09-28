@@ -199,6 +199,13 @@ public class BookApplicationFrame extends JFrame{
 		                        // 저장 성공
 		                    	JOptionPane.showMessageDialog(null, "정상적으로 접수되었습니다.", "신청 완료", JOptionPane.INFORMATION_MESSAGE);
 		                        System.out.println("도서 신청이 성공적으로 저장되었습니다.");
+		                        
+		                        // 초기화
+		                        titleField.setText("");
+		                        authorField.setText("");
+		                        publisherField.setText("");
+		                        priceField.setText("");
+		                        reasonArea.setText("");
 		                    } else {
 		                        // 저장 실패
 		                    	JOptionPane.showMessageDialog(null, "다시 시도하여주십시오.", "신청 실패", JOptionPane.ERROR_MESSAGE);
