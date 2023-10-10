@@ -3,6 +3,11 @@ package Student;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +20,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 
 public class BookSearchFrame extends JFrame{
 
@@ -29,19 +35,17 @@ public class BookSearchFrame extends JFrame{
 	JTextField searchField = new JTextField(); // 도서 검색 바
 	
 	//임시데이터입니다.
-    String[] header = {"도서명", "ISBN", "출판사", "저자", "대출상태"};
-    String[][] contents = {
-    		{"냠냠굳", "ㅇㅁ3fe", "SM", "장지안", "대출중"},
-    		{"으르렁", "ㅁㅏㅅ7g", "YG", "김지우", "대출가능"},
-    		{"안타날려", "ㅂㅡ5jk", "두산베어스", "정선영", "대출가능"}
-    };
+    DefaultTableModel tableModel;
+    JTable resultTable;
     
-    JTable resultTable = new JTable(contents, header); // 검색 결과를 표시할 테이블
+    String[] header = {"도서명", "ISBN", "출판사", "저자", "대출상태"};
+    String[][] contents = {};
 	
 	public BookSearchFrame() {
 		initializeUI();
 		addComponentsUI();
 		eventHandler();
+		loadDataFromDatabase();
 		setVisible(true);
 	}
 	
@@ -75,10 +79,16 @@ public class BookSearchFrame extends JFrame{
 		borderPanel.add(searchField);
 		borderPanel.add(searchBtn);
         
-        //테이블을 JScrollPane으로 감싸기
-        JScrollPane tableScrollPane = new JScrollPane(resultTable);
-        tableScrollPane.setBounds(30, 90, 390, 270);
-        borderPanel.add(tableScrollPane);
+		// JTable을 DefaultTableModel로 초기화합니다.
+	    tableModel = new DefaultTableModel(contents, header);
+
+	    // JTable을 DefaultTableModel로 설정합니다.
+	    resultTable = new JTable(tableModel);
+
+	    // JScrollPane을 사용하여 JTable을 감싸기
+	    JScrollPane tableScrollPane = new JScrollPane(resultTable);
+	    tableScrollPane.setBounds(30, 90, 390, 270);
+	    borderPanel.add(tableScrollPane);
 		
 		//panel에 이전버튼 생성
 		backBtn.setBounds(350, 0, 90, 40);
@@ -102,4 +112,39 @@ public class BookSearchFrame extends JFrame{
 		dispose();
 		new ChooseFrame();
 	}
+	
+	private void loadDataFromDatabase() {
+        // 데이터베이스 연결 URL, 사용자 이름 및 비밀번호를 정의합니다.
+        String dbUrl = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
+        String dbUser = "root";
+        String dbPassword = "0000";
+
+        try {
+            Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM book"; // 데이터베이스 스키마에 맞게 이 쿼리를 수정하십시오
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // 테이블의 기존 데이터를 지웁니다.
+            tableModel.setRowCount(0);
+
+            // 데이터베이스에서 가져온 데이터로 JTable을 채웁니다.
+            while (resultSet.next()) {
+                String bookName = resultSet.getString("title"); // 실제 열 이름으로 바꿔주세요
+                String isbn = resultSet.getString("ISBN");
+                String publisher = resultSet.getString("publisher");
+                String author = resultSet.getString("author");
+                String status = resultSet.getString("totalCopies");
+
+                // JTable에 새로운 행을 추가합니다.
+                tableModel.addRow(new String[]{bookName, isbn, publisher, author, status});
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

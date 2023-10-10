@@ -52,7 +52,7 @@ public class BookApplicationFrame extends JFrame{
     
     TextArea reasonArea = new TextArea();
     
- // 데이터베이스 연결 문자열에 시간대 설정 추가
+    // 데이터베이스 연결 문자열에 시간대 설정 추가
     private static final String DB_URL = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "0000";
@@ -219,7 +219,6 @@ public class BookApplicationFrame extends JFrame{
 		        }
 		    }
 		});
-
 
 	}
 	

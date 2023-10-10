@@ -5,6 +5,11 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,6 +44,8 @@ public class StudentInfoFrame extends JFrame{
 	JTextField emailField = new JTextField();
 	JTextField phoneField = new JTextField();
 	
+	private Connection connection;
+
 	public StudentInfoFrame() {
 		initializeUI();
 		addComponentsUI();
@@ -152,4 +159,5 @@ public class StudentInfoFrame extends JFrame{
 		dispose();
 		new ChooseFrame();
 	}
+	
 }
