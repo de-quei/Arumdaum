@@ -49,7 +49,6 @@ public class BookSearchFrame extends JFrame{
 		setVisible(true);
 	}
 	
-	
 	private void initializeUI() {
         // 창 초기설정
         setSize(500, 500);
@@ -122,7 +121,7 @@ public class BookSearchFrame extends JFrame{
         try {
             Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM book"; // 데이터베이스 스키마에 맞게 이 쿼리를 수정하십시오
+            String query = "SELECT * FROM book"; 
             ResultSet resultSet = statement.executeQuery(query);
 
             // 테이블의 기존 데이터를 지웁니다.
@@ -130,7 +129,7 @@ public class BookSearchFrame extends JFrame{
 
             // 데이터베이스에서 가져온 데이터로 JTable을 채웁니다.
             while (resultSet.next()) {
-                String bookName = resultSet.getString("title"); // 실제 열 이름으로 바꿔주세요
+                String bookName = resultSet.getString("title"); 
                 String isbn = resultSet.getString("ISBN");
                 String publisher = resultSet.getString("publisher");
                 String author = resultSet.getString("author");

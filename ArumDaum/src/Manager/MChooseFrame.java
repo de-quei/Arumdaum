@@ -58,11 +58,22 @@ public class MChooseFrame extends JFrame {
                 openBookRegistrationFrame();
             }
         });
+    	sInfo.addActionListener(new ActionListener() {
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			openMStudentInformationFrame();
+    		}
+    	});
     }
     
     private void openBookRegistrationFrame() {
     	dispose();
     	new BookRegistration();
+    }
+    
+    private void openMStudentInformationFrame() {
+    	dispose();
+    	new MStudentInformationFrame();
     }
     
 }
