@@ -58,6 +58,12 @@ public class MChooseFrame extends JFrame {
                 openBookRegistrationFrame();
             }
         });
+    	status.addActionListener(new ActionListener() {
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			openMApplicationStatusFrame();
+    		}
+    	});
     	sInfo.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
@@ -75,5 +81,8 @@ public class MChooseFrame extends JFrame {
     	dispose();
     	new MStudentInformationFrame();
     }
-    
+    private void openMApplicationStatusFrame() {
+    	dispose();
+    	new MApplicationStatusFrame();
+    }
 }
