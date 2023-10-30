@@ -7,13 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class BookRegistration extends JFrame{
+public class MBookRegistrationFrame extends JFrame{
 	
 	JPanel buttonPanel = new JPanel(); // button을 넣을 panel
 	
 	JButton backBtn = new JButton("이전으로");
 	
-	public BookRegistration (){
+	public MBookRegistrationFrame (){
 		initializeUI();
 		addComponentsUI();
 		eventHandler();

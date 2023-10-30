@@ -74,7 +74,7 @@ public class MChooseFrame extends JFrame {
     
     private void openBookRegistrationFrame() {
     	dispose();
-    	new BookRegistration();
+    	new MBookRegistrationFrame();
     }
     
     private void openMStudentInformationFrame() {
