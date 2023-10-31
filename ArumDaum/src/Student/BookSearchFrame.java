@@ -38,7 +38,7 @@ public class BookSearchFrame extends JFrame{
     DefaultTableModel tableModel;
     JTable resultTable;
     
-    String[] header = {"도서명", "ISBN", "출판사", "저자", "대출상태"};
+    String[] header = {"도서명", "ISBN", "출판사", "저자", "수량"};
     String[][] contents = {};
 	
 	public BookSearchFrame() {

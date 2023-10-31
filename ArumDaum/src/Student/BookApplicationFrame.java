@@ -189,7 +189,7 @@ public class BookApplicationFrame extends JFrame{
 		                    preparedStatement.setString(2, author);
 		                    preparedStatement.setString(3, publisher);
 		                    preparedStatement.setString(4, category);
-		                    preparedStatement.setDouble(5, Double.parseDouble(priceText));
+		                    preparedStatement.setInt(5, Integer.parseInt(priceText));
 		                    preparedStatement.setInt(6, Integer.parseInt(publicationYearText));
 		                    preparedStatement.setString(7, applicationReason);
 
