@@ -40,6 +40,10 @@ public class BookSearchFrame extends JFrame{
     
     String[] header = {"도서명", "ISBN", "출판사", "저자", "수량"};
     String[][] contents = {};
+    
+    String dbUrl = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
+    String dbUser = "root";
+    String dbPassword = "0000";
 	
 	public BookSearchFrame() {
 		initializeUI();
@@ -97,13 +101,22 @@ public class BookSearchFrame extends JFrame{
 	}
 	
 	private void eventHandler() {
-		
 		//이전버튼
 		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				openChooseFrame();
 			}
+		});
+		//검색버튼
+		searchBtn.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        String searchText = searchField.getText().trim();
+		        if (!searchText.isEmpty()) {
+		            searchBooksByTitle(searchText);
+		        }
+		    }
 		});
 	}
 	
@@ -113,11 +126,6 @@ public class BookSearchFrame extends JFrame{
 	}
 	
 	private void loadDataFromDatabase() {
-        // 데이터베이스 연결 URL, 사용자 이름 및 비밀번호를 정의합니다.
-        String dbUrl = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
-        String dbUser = "root";
-        String dbPassword = "0000";
-
         try {
             Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
             Statement statement = connection.createStatement();
@@ -146,4 +154,35 @@ public class BookSearchFrame extends JFrame{
             e.printStackTrace();
         }
     }
+	
+	//TODO 검색 정확도 높이기! 무조건!
+	private void searchBooksByTitle(String title) {
+	    try {
+	        Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+	        Statement statement = connection.createStatement();
+	        String query = "SELECT * FROM book WHERE title LIKE '%" + title + "%'";
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        // 테이블의 기존 데이터를 지웁니다.
+	        tableModel.setRowCount(0);
+
+	        // 데이터베이스에서 가져온 데이터로 JTable을 채웁니다.
+	        while (resultSet.next()) {
+	            String bookName = resultSet.getString("title");
+	            String isbn = resultSet.getString("ISBN");
+	            String publisher = resultSet.getString("publisher");
+	            String author = resultSet.getString("author");
+	            String status = resultSet.getString("totalCopies");
+
+	            // JTable에 새로운 행을 추가합니다.
+	            tableModel.addRow(new String[]{bookName, isbn, publisher, author, status});
+	        }
+
+	        resultSet.close();
+	        statement.close();
+	        connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
 }
