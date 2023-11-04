@@ -27,7 +27,6 @@ public class StudentInfoFrame extends JFrame{
 	JPanel buttonPanel = new JPanel();
 	
 	JButton backBtn = new JButton("이전으로");
-	JButton modifyBtn = new JButton("수정하기");
 	JButton logoutBtn = new JButton("로그아웃");
 	JButton uploadImageBtn = new JButton("사진 업로드");
 	
@@ -45,6 +44,7 @@ public class StudentInfoFrame extends JFrame{
 	JTextField phoneField = new JTextField();
 	
 	private Connection connection;
+	private String studentId;
 
 	public StudentInfoFrame() {
 		initializeUI();
@@ -114,10 +114,6 @@ public class StudentInfoFrame extends JFrame{
       	buttonPanel.setLayout(null);
       	add(buttonPanel);
       	
-      	//수정하기 버튼
-      	modifyBtn.setBounds(150, 0, 90, 40);
-      	buttonPanel.add(modifyBtn);
-      	
       	//이전버튼
       	backBtn.setBounds(250, 0, 90, 40);
       	buttonPanel.add(backBtn);
@@ -159,5 +155,5 @@ public class StudentInfoFrame extends JFrame{
 		dispose();
 		new ChooseFrame();
 	}
-	
+
 }

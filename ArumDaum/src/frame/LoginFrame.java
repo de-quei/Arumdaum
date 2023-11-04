@@ -149,11 +149,10 @@ public class LoginFrame extends JFrame {
     }
     
     private void openChooseFrame() {
-        // 기존의 창을 지우고
         dispose();
-        // LibraryFrmae()을 호출한다.
         new ChooseFrame();
     }
+
     
     private void openMChooseFrame() {
     	dispose();
