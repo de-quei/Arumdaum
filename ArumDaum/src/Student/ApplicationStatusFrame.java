@@ -27,7 +27,7 @@ public class ApplicationStatusFrame extends JFrame{
 	JButton backBtn = new JButton("이전으로");
 	
 	// JTable 모델
-	String[] header = {"순번", "도서명", "카테고리", "신청현황", "사유"}; // 중간에 신청일자..
+	String[] header = {"순번", "도서명", "카테고리", "신청현황", "사유"};
 	DefaultTableModel tableModel = new DefaultTableModel(header, 0);
 	JTable statusTable = new JTable(tableModel);
 

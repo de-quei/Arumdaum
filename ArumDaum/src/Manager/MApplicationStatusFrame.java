@@ -41,7 +41,7 @@ public class MApplicationStatusFrame extends JFrame {
     JTable statusTable = new JTable(tableModel);
 
     String[] checkOptions = {"수락", "거절"};
-    String[] reasonOptions = {"높은가격", "단종", "불건전콘텐츠", "사유불충분"}; //더 있다면 추가할 것.
+    String[] reasonOptions = {"사유충분", "학습용도", "사유불충분", "높은가격", "단종", "불건전콘텐츠"}; //더 있다면 추가할 것.
     
     JComboBox<String> checkBox = new JComboBox<>(checkOptions);
     JComboBox<String> reasonBox = new JComboBox<>(reasonOptions);
@@ -179,7 +179,7 @@ public class MApplicationStatusFrame extends JFrame {
         }
 
         // 행 삭제
-        //JTable상에 삭제이지, Database상 삭제는 아님!
+        //TODO 데이터베이스상에서 삭제하게하기 / 실행 시 다시 돌아옴
         if (rowIndex != -1) {
             tableModel.removeRow(rowIndex);
         }
