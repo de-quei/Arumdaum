@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -166,6 +167,13 @@ public class MApplicationStatusFrame extends JFrame {
         // 선택된 수락여부 가져오기
         String selectedStatus = (String) checkBox.getSelectedItem();
         String selectedCheck = (String) reasonBox.getSelectedItem();
+        
+        //필드 체크하기
+        if (applicationID.isEmpty() || selectedStatus.isEmpty() || selectedCheck.isEmpty()) {
+            // Show a dialog indicating that all fields must be filled
+            JOptionPane.showMessageDialog(this, "모든 필드를 입력해주세요.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         // 순번을 기반으로 해당 행을 찾아 수락여부를 업데이트
         int rowIndex = -1; // 찾은 행의 인덱스
