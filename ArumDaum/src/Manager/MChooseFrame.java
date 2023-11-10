@@ -39,10 +39,10 @@ public class MChooseFrame extends JFrame {
     private void addComponentsUI() {
     	
         // 버튼 위치 및 크기 설정
-        registration.setBounds(40, 60, 100, 30);
-        check.setBounds(140, 60, 100, 30);
-        status.setBounds(240, 60, 100, 30);
-        sInfo.setBounds(340, 60, 100, 30);
+        registration.setBounds(40, 50, 100, 50);
+        check.setBounds(140, 50, 100, 50);
+        status.setBounds(240, 50, 100, 50);
+        sInfo.setBounds(340, 50, 100, 50);
 
         // 프레임에 버튼 추가
         add(registration);
