@@ -35,7 +35,7 @@ public class MApplicationStatusFrame extends JFrame {
     JTextField applicationIDField = new JTextField();
 
     // JTable 모델
-    String[] header = {"순번", "도서명", "카테고리", "수락여부"}; // 중간에 신청일자..
+    String[] header = {"순번", "도서명", "카테고리", "가격", "신청사유", "수락여부"}; // 중간에 신청일자..
     DefaultTableModel tableModel = new DefaultTableModel(header, 0);
     JTable statusTable = new JTable(tableModel);
 
@@ -139,6 +139,8 @@ public class MApplicationStatusFrame extends JFrame {
                         resultSet.getString("id"),
                         resultSet.getString("title"),
                         resultSet.getString("category"),
+                        resultSet.getString("price"),
+                        resultSet.getString("reason"),
                         resultSet.getString("status")
                 };
                 tableModel.addRow(rowData);
