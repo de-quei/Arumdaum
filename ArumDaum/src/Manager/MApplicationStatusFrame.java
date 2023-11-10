@@ -83,11 +83,22 @@ public class MApplicationStatusFrame extends JFrame{
 				openChooseFrame();
 			}
 		});
+		checkBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				openBookCheck();
+			}
+		});
 	}
 	
 	private void openChooseFrame() {
 		dispose();
 		new MChooseFrame();
+	}
+	
+	private void openBookCheck() {
+		dispose();
+		new MBookCheck();
 	}
 	
 	private void loadApplicationStatus() {
