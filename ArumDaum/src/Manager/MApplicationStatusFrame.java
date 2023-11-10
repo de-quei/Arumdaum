@@ -31,6 +31,7 @@ public class MApplicationStatusFrame extends JFrame {
 
     JLabel applicationIDLabel = new JLabel("순번 : ");
     JLabel checkLabel = new JLabel("수락여부 : ");
+    JLabel checkReasonLabel = new JLabel("사유");
 
     JTextField applicationIDField = new JTextField();
 
@@ -40,7 +41,10 @@ public class MApplicationStatusFrame extends JFrame {
     JTable statusTable = new JTable(tableModel);
 
     String[] checkOptions = {"수락", "거절"};
+    String[] reasonOptions = {"높은가격", "단종", "불건전콘텐츠", "사유불충분"}; //더 있다면 추가할 것.
+    
     JComboBox<String> checkBox = new JComboBox<>(checkOptions);
+    JComboBox<String> reasonBox = new JComboBox<>(reasonOptions);
 
     public MApplicationStatusFrame() {
         initializeUI();
@@ -88,6 +92,12 @@ public class MApplicationStatusFrame extends JFrame {
         // 정보전송 버튼
         checkBtn.setBounds(190, 240, 90, 25);
         borderPanel.add(checkBtn);
+        
+        //사유
+        checkReasonLabel.setBounds(20, 270, 60, 25);
+        reasonBox.setBounds(70, 270, 80, 25);
+        borderPanel.add(checkReasonLabel);
+        borderPanel.add(reasonBox);
 
         // panel에 이전버튼 생성
         backBtn.setBounds(350, 0, 90, 40);
@@ -155,12 +165,14 @@ public class MApplicationStatusFrame extends JFrame {
 
         // 선택된 수락여부 가져오기
         String selectedStatus = (String) checkBox.getSelectedItem();
+        String selectedCheck = (String) reasonBox.getSelectedItem();
 
         // 순번을 기반으로 해당 행을 찾아 수락여부를 업데이트
         int rowIndex = -1; // 찾은 행의 인덱스
         for (int i = 0; i < tableModel.getRowCount(); i++) {
             if (tableModel.getValueAt(i, 0).equals(applicationID)) {
                 tableModel.setValueAt(selectedStatus, i, 3);
+                tableModel.setValueAt(selectedCheck, i, 4);
                 rowIndex = i; // 찾은 행의 인덱스 저장
                 break; // 순번은 고유하기 때문에 찾았으면 더 이상 반복할 필요 없음
             }
@@ -173,14 +185,14 @@ public class MApplicationStatusFrame extends JFrame {
         }
 
         // 데이터베이스 업데이트
-        updateDatabase(applicationID, selectedStatus);
+        updateDatabase(applicationID, selectedStatus, selectedCheck);
 
         // 순번 입력 필드 초기화
         applicationIDField.setText("");
     }
 
     
-    private void updateDatabase(String applicationID, String selectedStatus) {
+    private void updateDatabase(String applicationID, String selectedStatus, String selectedReason) {
         // 데이터베이스 연결 정보
         String DB_URL = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
         String DB_USER = "root";
@@ -188,12 +200,13 @@ public class MApplicationStatusFrame extends JFrame {
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             // SQL 쿼리 작성
-            String updateQuery = "UPDATE bookApplication SET status = ? WHERE id = ?";
+            String updateQuery = "UPDATE bookApplication SET status = ?, checkreason = ? WHERE id = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
                 // 쿼리에 파라미터 설정
                 preparedStatement.setString(1, selectedStatus);
-                preparedStatement.setString(2, applicationID);
+                preparedStatement.setString(2, selectedReason);
+                preparedStatement.setString(3, applicationID);
 
                 // 쿼리 실행
                 preparedStatement.executeUpdate();
@@ -202,5 +215,6 @@ public class MApplicationStatusFrame extends JFrame {
             e.printStackTrace();
         }
     }
+
 
 }
