@@ -25,7 +25,6 @@ public class MApplicationStatusFrame extends JFrame{
 	JPanel buttonPanel = new JPanel(); // button을 넣을 panel
 	
 	JButton backBtn = new JButton("이전으로");
-	JButton checkBtn = new JButton("수락");
 	
 	// JTable 모델
 	String[] header = {"순번", "도서명", "카테고리"}; // 중간에 신청일자..
@@ -66,11 +65,7 @@ public class MApplicationStatusFrame extends JFrame{
         borderPanel.add(tableScrollPane);
         
         //panel에 이전버튼 생성
-        checkBtn.setBounds(350, 0, 90, 40);
-        buttonPanel.setLayout(null);
-        buttonPanel.add(checkBtn);
-        
-        backBtn.setBounds(0, 0, 90, 40);
+        backBtn.setBounds(350, 0, 90, 40);
         buttonPanel.setLayout(null);
         buttonPanel.add(backBtn);
 	}
@@ -83,22 +78,11 @@ public class MApplicationStatusFrame extends JFrame{
 				openChooseFrame();
 			}
 		});
-		checkBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				openBookCheck();
-			}
-		});
 	}
 	
 	private void openChooseFrame() {
 		dispose();
 		new MChooseFrame();
-	}
-	
-	private void openBookCheck() {
-		dispose();
-		new MBookCheck();
 	}
 	
 	private void loadApplicationStatus() {
