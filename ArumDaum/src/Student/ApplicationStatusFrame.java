@@ -106,9 +106,8 @@ public class ApplicationStatusFrame extends JFrame{
                 		//TODO:null은 나중에 구현할 것
                         resultSet.getString("id"),
                         resultSet.getString("title"),
-                        //resultSet.getString(null),
                         resultSet.getString("category"),
-                        //resultSet.getString(null)
+                        resultSet.getString("status") //TODO 사유 JComboBox로 볼 수 있게 개발하기
                 };
                 tableModel.addRow(rowData);
             }
