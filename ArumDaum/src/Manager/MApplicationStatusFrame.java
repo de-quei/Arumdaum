@@ -35,7 +35,7 @@ public class MApplicationStatusFrame extends JFrame {
     JTextField applicationIDField = new JTextField();
 
     // JTable 모델
-    String[] header = {"순번", "도서명", "카테고리", "가격", "신청사유", "수락여부"}; // 중간에 신청일자..
+    String[] header = {"순번", "도서명", "카테고리", "가격", "신청사유"}; // 중간에 신청일자..
     DefaultTableModel tableModel = new DefaultTableModel(header, 0);
     JTable statusTable = new JTable(tableModel);
 
@@ -140,8 +140,7 @@ public class MApplicationStatusFrame extends JFrame {
                         resultSet.getString("title"),
                         resultSet.getString("category"),
                         resultSet.getString("price"),
-                        resultSet.getString("reason"),
-                        resultSet.getString("status")
+                        resultSet.getString("reason") //TODO 신청사유가 잘림, textarea -> JComboBox로 선택옵션 한정?
                 };
                 tableModel.addRow(rowData);
             }
@@ -158,18 +157,28 @@ public class MApplicationStatusFrame extends JFrame {
         String selectedStatus = (String) checkBox.getSelectedItem();
 
         // 순번을 기반으로 해당 행을 찾아 수락여부를 업데이트
+        int rowIndex = -1; // 찾은 행의 인덱스
         for (int i = 0; i < tableModel.getRowCount(); i++) {
             if (tableModel.getValueAt(i, 0).equals(applicationID)) {
                 tableModel.setValueAt(selectedStatus, i, 3);
+                rowIndex = i; // 찾은 행의 인덱스 저장
                 break; // 순번은 고유하기 때문에 찾았으면 더 이상 반복할 필요 없음
             }
         }
 
+        // 행 삭제
+        //JTable상에 삭제이지, Database상 삭제는 아님!
+        if (rowIndex != -1) {
+            tableModel.removeRow(rowIndex);
+        }
+
+        // 데이터베이스 업데이트
         updateDatabase(applicationID, selectedStatus);
 
         // 순번 입력 필드 초기화
         applicationIDField.setText("");
     }
+
     
     private void updateDatabase(String applicationID, String selectedStatus) {
         // 데이터베이스 연결 정보
