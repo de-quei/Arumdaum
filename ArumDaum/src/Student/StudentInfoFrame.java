@@ -124,5 +124,4 @@ public class StudentInfoFrame extends JFrame{
 		dispose();
 		new ChooseFrame();
 	}
-
 }

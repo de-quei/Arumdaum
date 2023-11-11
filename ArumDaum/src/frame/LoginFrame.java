@@ -13,7 +13,6 @@ public class LoginFrame extends JFrame {
 	boolean loginvaild = false;
 
 	//배경 이미지 상대경로
-    
     JTextField sIdText = new JTextField();
     JPasswordField pwText = new JPasswordField();
     

@@ -32,7 +32,7 @@ public class MApplicationStatusFrame extends JFrame {
 
     JLabel applicationIDLabel = new JLabel("순번 : ");
     JLabel checkLabel = new JLabel("수락여부 : ");
-    JLabel checkReasonLabel = new JLabel("사유");
+    JLabel checkReasonLabel = new JLabel("사유 : ");
 
     JTextField applicationIDField = new JTextField();
 
@@ -80,23 +80,23 @@ public class MApplicationStatusFrame extends JFrame {
 
         // 순번 입력
         applicationIDLabel.setBounds(20, 210, 60, 25);
-        applicationIDField.setBounds(70, 210, 200, 25);
+        applicationIDField.setBounds(90, 210, 200, 25);
         borderPanel.add(applicationIDLabel);
         borderPanel.add(applicationIDField);
 
         // 수락여부
         checkLabel.setBounds(20, 240, 80, 25);
-        checkBox.setBounds(100, 240, 80, 25);
+        checkBox.setBounds(90, 240, 80, 25);
         borderPanel.add(checkLabel);
         borderPanel.add(checkBox);
 
         // 정보전송 버튼
-        checkBtn.setBounds(190, 240, 90, 25);
+        checkBtn.setBounds(190, 240, 90, 40);
         borderPanel.add(checkBtn);
         
         //사유
         checkReasonLabel.setBounds(20, 270, 60, 25);
-        reasonBox.setBounds(70, 270, 80, 25);
+        reasonBox.setBounds(90, 270, 80, 25);
         borderPanel.add(checkReasonLabel);
         borderPanel.add(reasonBox);
 
@@ -150,7 +150,7 @@ public class MApplicationStatusFrame extends JFrame {
                         resultSet.getString("id"),
                         resultSet.getString("title"),
                         resultSet.getString("category"),
-                        resultSet.getString("price"),
+                        String.valueOf(resultSet.getInt("price")),
                         resultSet.getString("reason") //TODO 신청사유가 잘림, textarea -> JComboBox로 선택옵션 한정?
                 };
                 tableModel.addRow(rowData);
