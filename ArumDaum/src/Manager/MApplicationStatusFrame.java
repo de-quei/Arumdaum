@@ -137,7 +137,7 @@ public class MApplicationStatusFrame extends JFrame {
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             Statement statement = connection.createStatement();
-            String selectQuery = "SELECT * FROM bookApplication";
+            String selectQuery = "SELECT * FROM bookApplication order by id desc";
 
             ResultSet resultSet = statement.executeQuery(selectQuery);
 
