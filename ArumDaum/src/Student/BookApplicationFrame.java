@@ -46,11 +46,12 @@ public class BookApplicationFrame extends JFrame{
     String[] category = {"소설", "시/에세이", "인문", "가정", "요리", "건강", "취미/실용/스포츠", 
     					 "경제/경영", "자기계발", "정치/사회", "역사/문화", "종교", "예술/대중문화", 
     					 "기술/공학", "외국어", "과학", "취업", "여행", "컴퓨터/IT"};
+    String[] reason = {"학습도서", "공익도서", "필수도서", "유익도서", "기타"};
     
     JComboBox categoryBox = new JComboBox(category);
     JComboBox<Integer> publicationYearBox;
-    
-    TextArea reasonArea = new TextArea();
+    JComboBox reasonBox = new JComboBox(reason);
+
     
     // 데이터베이스 연결 문자열에 시간대 설정 추가
     private static final String DB_URL = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
@@ -84,32 +85,32 @@ public class BookApplicationFrame extends JFrame{
 		add(borderPanel);
 		
 		//도서명
-		titleLabel.setBounds(30, 40, 80, 25);
-        titleField.setBounds(120, 40, 300, 25);
+		titleLabel.setBounds(30, 50, 80, 25);
+        titleField.setBounds(120, 50, 300, 25);
         borderPanel.add(titleLabel);
         borderPanel.add(titleField);
         
         //저자
-        authorLabel.setBounds(30, 80, 80, 25);
-        authorField.setBounds(120, 80, 300, 25);
+        authorLabel.setBounds(30, 95, 80, 25);
+        authorField.setBounds(120, 95, 300, 25);
         borderPanel.add(authorLabel);
         borderPanel.add(authorField);
         
         //출판사
-        publisherLabel.setBounds(30, 120, 80, 25);
-        publisherField.setBounds(120, 120, 300, 25);
+        publisherLabel.setBounds(30, 140, 80, 25);
+        publisherField.setBounds(120, 140, 300, 25);
         borderPanel.add(publisherLabel);
         borderPanel.add(publisherField);
         
         //카테고리
-        categoryLabel.setBounds(30, 160, 80, 25);
-        categoryBox.setBounds(120, 160, 300, 25);
+        categoryLabel.setBounds(30, 185, 80, 25);
+        categoryBox.setBounds(120, 185, 300, 25);
         borderPanel.add(categoryLabel);
         borderPanel.add(categoryBox);
         
         //가격
-        priceLabel.setBounds(30, 200, 80, 25);
-        priceField.setBounds(120, 200, 300, 25);
+        priceLabel.setBounds(30, 230, 80, 25);
+        priceField.setBounds(120, 230, 300, 25);
         borderPanel.add(priceLabel);
         borderPanel.add(priceField);
         
@@ -123,16 +124,16 @@ public class BookApplicationFrame extends JFrame{
         publicationYearBox = new JComboBox<>(yearsArray);
         
         //출판연도
-        publicationYearLabel.setBounds(30, 240, 80, 25);
-        publicationYearBox.setBounds(120, 240, 300, 25);
+        publicationYearLabel.setBounds(30, 275, 80, 25);
+        publicationYearBox.setBounds(120, 275, 300, 25);
         borderPanel.add(publicationYearLabel);
         borderPanel.add(publicationYearBox);
         
         //신청사유
-        applicationReasonLabel.setBounds(30, 280, 80, 25);
-        reasonArea.setBounds(120, 280, 300, 70);
+        applicationReasonLabel.setBounds(30, 320, 80, 25);
+        reasonBox.setBounds(120, 320, 300, 25);
         borderPanel.add(applicationReasonLabel);
-        borderPanel.add(reasonArea);
+        borderPanel.add(reasonBox);
         
         //button panel
       	buttonPanel.setBounds(20, 410, 440, 40);
@@ -168,7 +169,7 @@ public class BookApplicationFrame extends JFrame{
 		        String category = categoryBox.getSelectedItem().toString();
 		        String priceText = priceField.getText();
 		        String publicationYearText = publicationYearBox.getSelectedItem().toString();
-		        String applicationReason = reasonArea.getText();
+		        String applicationReason = reasonBox.getSelectedItem().toString();
 
 		        // 입력값이 비어있는지 확인
 		        if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || category.isEmpty() || priceText.isEmpty() || publicationYearText.isEmpty() || applicationReason.isEmpty()) {
@@ -205,7 +206,6 @@ public class BookApplicationFrame extends JFrame{
 		                        authorField.setText("");
 		                        publisherField.setText("");
 		                        priceField.setText("");
-		                        reasonArea.setText("");
 		                    } else {
 		                        // 저장 실패
 		                    	JOptionPane.showMessageDialog(null, "다시 시도하여주십시오.", "신청 실패", JOptionPane.ERROR_MESSAGE);
