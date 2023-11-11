@@ -37,7 +37,7 @@ public class MApplicationStatusFrame extends JFrame {
     JTextField applicationIDField = new JTextField();
 
     // JTable 모델
-    String[] header = {"순번", "도서명", "카테고리", "가격", "신청사유"}; // 중간에 신청일자..
+    String[] header = {"순번", "도서명", "카테고리", "가격", "신청사유", "판단사유"}; // 중간에 신청일자..
     DefaultTableModel tableModel = new DefaultTableModel(header, 0);
     JTable statusTable = new JTable(tableModel);
 
@@ -151,7 +151,8 @@ public class MApplicationStatusFrame extends JFrame {
                         resultSet.getString("title"),
                         resultSet.getString("category"),
                         String.valueOf(resultSet.getInt("price")),
-                        resultSet.getString("reason") //TODO 신청사유가 잘림, textarea -> JComboBox로 선택옵션 한정?
+                        resultSet.getString("reason"), 
+                        resultSet.getString("checkreason")
                 };
                 tableModel.addRow(rowData);
             }
