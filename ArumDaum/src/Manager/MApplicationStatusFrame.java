@@ -41,7 +41,7 @@ public class MApplicationStatusFrame extends JFrame {
     DefaultTableModel tableModel = new DefaultTableModel(header, 0);
     JTable statusTable = new JTable(tableModel);
 
-    String[] checkOptions = {"수락", "거절"};
+    String[] checkOptions = {"접수완료", "배송중", "입고완료", "승인거절"};
     String[] reasonOptions = {"사유충분", "학습용도", "사유불충분", "높은가격", "단종", "불건전콘텐츠"}; //더 있다면 추가할 것.
     
     JComboBox<String> checkBox = new JComboBox<>(checkOptions);

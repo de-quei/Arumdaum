@@ -28,23 +28,18 @@ public class StudentInfoFrame extends JFrame{
 	
 	JButton backBtn = new JButton("이전으로");
 	JButton logoutBtn = new JButton("로그아웃");
-	JButton uploadImageBtn = new JButton("사진 업로드");
 	
 	JLabel nameLabel = new JLabel("이름 :");
 	JLabel gradeLabel = new JLabel("학번 :");
 	JLabel passwordLabel = new JLabel("비밀번호 :");
 	JLabel emailLabel = new JLabel("E-MAIL :");
 	JLabel phoneLabel = new JLabel("전화번호 :");
-	JLabel uploadedImageLabel = new JLabel(); // 이미지를 표시할 JLabel
 	
 	JTextField nameField = new JTextField();
 	JTextField gradeField = new JTextField();
 	JTextField passwordField = new JTextField();
 	JTextField emailField = new JTextField();
 	JTextField phoneField = new JTextField();
-	
-	private Connection connection;
-	private String studentId;
 
 	public StudentInfoFrame() {
 		initializeUI();
@@ -101,14 +96,6 @@ public class StudentInfoFrame extends JFrame{
 		borderPanel.add(phoneLabel);
 		borderPanel.add(phoneField);
 		
-		//프로필 사진 업로드 버튼
-        uploadImageBtn.setBounds(290, 245, 100, 30);
-        borderPanel.add(uploadImageBtn);
-        
-        //이미지가 뜨는 라벨
-        uploadedImageLabel.setBounds(290, 90, 100, 130); // 이미지 크기와 위치를 조절해주세요.
-        borderPanel.add(uploadedImageLabel);
-		
 		//button panel
       	buttonPanel.setBounds(20, 410, 440, 40);
       	buttonPanel.setLayout(null);
@@ -131,24 +118,6 @@ public class StudentInfoFrame extends JFrame{
 				openChooseFrame();
 			}
 		});
-		
-		// 프로필 사진 업로드 버튼
-        uploadImageBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                int returnValue = fileChooser.showOpenDialog(null);
-
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    
-                    // 선택한 이미지를 JLabel에 표시
-                    ImageIcon imageIcon = new ImageIcon(new ImageIcon(selectedFile.getAbsolutePath())
-                            .getImage().getScaledInstance(uploadedImageLabel.getWidth(), uploadedImageLabel.getHeight(), Image.SCALE_DEFAULT));
-                    uploadedImageLabel.setIcon(imageIcon);
-                }
-            }
-        });
 	}
 	
 	private void openChooseFrame() {
