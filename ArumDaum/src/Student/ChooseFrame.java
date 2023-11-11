@@ -107,7 +107,7 @@ public class ChooseFrame extends JFrame {
             welcomeTextArea.setText(text.toString());
         } catch (IOException e) {
             e.printStackTrace();
-            welcomeTextArea.setText("Failed to load welcome text from file.");
+            welcomeTextArea.setText("파일을 불러오는데 실패했습니다.");
         }
     }
     
