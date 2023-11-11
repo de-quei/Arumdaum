@@ -16,7 +16,7 @@ public class ChooseFrame extends JFrame {
     JButton applicationBtn = new JButton("도서 신청");
     JButton searchBtn = new JButton("도서 검색");
     JButton statusBtn = new JButton("신청 현황");
-    JButton sInfoBtn = new JButton("회원 정보");
+    //JButton sInfoBtn = new JButton("회원 정보");
     
     JTextArea welcomeTextArea = new JTextArea();
     
@@ -34,7 +34,7 @@ public class ChooseFrame extends JFrame {
 
     private void initializeUI() {
         // 창 초기설정
-        setSize(500, 200);
+        setSize(400, 200);
         setResizable(false);
         setTitle("아름다움");
         setLayout(null);
@@ -44,7 +44,7 @@ public class ChooseFrame extends JFrame {
 
     private void addComponentsUI() {
     	// 텍스트를 표시할 TextArea
-    	welcomeTextArea.setBounds(40, 25, 400, 70);
+    	welcomeTextArea.setBounds(40, 25, 300, 70);
     	welcomeTextArea.setLineWrap(true); //자동 줄바꾸기
     	welcomeTextArea.setEditable(false); //textarea 수정 불가
     	add(welcomeTextArea);
@@ -53,13 +53,13 @@ public class ChooseFrame extends JFrame {
         applicationBtn.setBounds(40, 100, 100, 30);
         searchBtn.setBounds(140, 100, 100, 30);
         statusBtn.setBounds(240, 100, 100, 30);
-        sInfoBtn.setBounds(340, 100, 100, 30);
+        //sInfoBtn.setBounds(340, 100, 100, 30);
 
         // 프레임에 버튼 추가
         add(applicationBtn);
         add(searchBtn);
         add(statusBtn);
-        add(sInfoBtn);
+        //add(sInfoBtn);
     }
     
     private void eventHandler() {
@@ -81,12 +81,12 @@ public class ChooseFrame extends JFrame {
             	openApplicationStatusFrame();
             }
         });
-        sInfoBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	openStudentInfoFrame();
-            }
-        });
+//        sInfoBtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//            	openStudentInfoFrame();
+//            }
+//        });
         
     }
     
@@ -126,8 +126,8 @@ public class ChooseFrame extends JFrame {
     	new ApplicationStatusFrame();
     }
     
-    private void openStudentInfoFrame() {
-    	dispose();
-    	new StudentInfoFrame();
-    }
+//    private void openStudentInfoFrame() {
+//    	dispose();
+//    	new StudentInfoFrame();
+//    }
 }

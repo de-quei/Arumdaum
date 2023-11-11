@@ -12,7 +12,7 @@ import Student.ChooseFrame;
 
 public class MChooseFrame extends JFrame {
 
-	JButton sInfo = new JButton("회원 관리");
+	//JButton sInfo = new JButton("회원 관리");
     JButton registration = new JButton("도서 등록");
     JButton check = new JButton("도서 현황");
     JButton status = new JButton("신청 현황");
@@ -28,7 +28,7 @@ public class MChooseFrame extends JFrame {
 
     private void initializeUI() {
         // 창 초기설정
-        setSize(500, 200);
+        setSize(400, 200);
         setResizable(false);
         setTitle("관리자 화면");
         setLayout(null);
@@ -42,13 +42,13 @@ public class MChooseFrame extends JFrame {
         registration.setBounds(40, 50, 100, 50);
         check.setBounds(140, 50, 100, 50);
         status.setBounds(240, 50, 100, 50);
-        sInfo.setBounds(340, 50, 100, 50);
+        //sInfo.setBounds(340, 50, 100, 50);
 
         // 프레임에 버튼 추가
         add(registration);
         add(check);
         add(status);
-        add(sInfo);
+        //add(sInfo);
     }
     
     private void eventHandler() {
@@ -64,12 +64,12 @@ public class MChooseFrame extends JFrame {
     			openMApplicationStatusFrame();
     		}
     	});
-    	sInfo.addActionListener(new ActionListener() {
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			openMStudentInformationFrame();
-    		}
-    	});
+//    	sInfo.addActionListener(new ActionListener() {
+//    		@Override
+//    		public void actionPerformed(ActionEvent e) {
+//    			openMStudentInformationFrame();
+//    		}
+//    	});
     	check.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
@@ -83,10 +83,10 @@ public class MChooseFrame extends JFrame {
     	new MBookRegistrationFrame();
     }
     
-    private void openMStudentInformationFrame() {
-    	dispose();
-    	new MStudentInformationFrame();
-    }
+//    private void openMStudentInformationFrame() {
+//    	dispose();
+//    	new MStudentInformationFrame();
+//    }
     private void openMApplicationStatusFrame() {
     	dispose();
     	new MApplicationStatusFrame();
