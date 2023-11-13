@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 public class MApplicationStatusFrame extends JFrame {
 
@@ -37,7 +38,7 @@ public class MApplicationStatusFrame extends JFrame {
     JTextField applicationIDField = new JTextField();
 
     // JTable 모델
-    String[] header = {"순번", "도서명", "카테고리", "가격", "신청사유", "판단사유"}; // 중간에 신청일자..
+    String[] header = {"순번", "도서명", "카테고리", "가격", "신청사유", "판단사유", "현황"}; // 중간에 신청일자..
     DefaultTableModel tableModel = new DefaultTableModel(header, 0);
     JTable statusTable = new JTable(tableModel);
 
@@ -57,7 +58,7 @@ public class MApplicationStatusFrame extends JFrame {
 
     private void initializeUI() {
         // 창 초기설정
-        setSize(500, 500);
+        setSize(600, 500);
         setResizable(false);
         setTitle("아름다움");
         setLayout(null);
@@ -66,37 +67,37 @@ public class MApplicationStatusFrame extends JFrame {
     }
 
     private void addComponentsUI() {
-        borderPanel.setBounds(20, 20, 440, 380);
+        borderPanel.setBounds(20, 20, 540, 380);
         borderPanel.setBorder(new TitledBorder(new LineBorder(Color.BLACK), "신청 현황"));
         borderPanel.setLayout(null);
         add(borderPanel);
 
-        buttonPanel.setBounds(20, 410, 440, 40);
+        buttonPanel.setBounds(20, 410, 540, 40);
         add(buttonPanel);
 
         JScrollPane tableScrollPane = new JScrollPane(statusTable);
-        tableScrollPane.setBounds(20, 35, 400, 160);
+        tableScrollPane.setBounds(20, 35, 500, 200);
         borderPanel.add(tableScrollPane);
 
         // 순번 입력
-        applicationIDLabel.setBounds(20, 210, 60, 25);
-        applicationIDField.setBounds(90, 210, 200, 25);
+        applicationIDLabel.setBounds(20, 250, 60, 25);
+        applicationIDField.setBounds(90, 250, 200, 25);
         borderPanel.add(applicationIDLabel);
         borderPanel.add(applicationIDField);
 
         // 수락여부
-        checkLabel.setBounds(20, 240, 80, 25);
-        checkBox.setBounds(90, 240, 80, 25);
+        checkLabel.setBounds(20, 290, 80, 25);
+        checkBox.setBounds(90, 290, 80, 25);
         borderPanel.add(checkLabel);
         borderPanel.add(checkBox);
 
         // 정보전송 버튼
-        checkBtn.setBounds(190, 240, 90, 40);
-        borderPanel.add(checkBtn);
+        checkBtn.setBounds(450, 0, 90, 40);
+        buttonPanel.add(checkBtn);
         
         //사유
-        checkReasonLabel.setBounds(20, 270, 60, 25);
-        reasonBox.setBounds(90, 270, 80, 25);
+        checkReasonLabel.setBounds(20, 330, 60, 25);
+        reasonBox.setBounds(90, 330, 80, 25);
         borderPanel.add(checkReasonLabel);
         borderPanel.add(reasonBox);
 
@@ -152,7 +153,8 @@ public class MApplicationStatusFrame extends JFrame {
                         resultSet.getString("category"),
                         String.valueOf(resultSet.getInt("price")),
                         resultSet.getString("reason"), 
-                        resultSet.getString("checkreason")
+                        resultSet.getString("checkreason"),
+                        resultSet.getString("status")
                 };
                 tableModel.addRow(rowData);
             }
@@ -185,12 +187,6 @@ public class MApplicationStatusFrame extends JFrame {
                 rowIndex = i; // 찾은 행의 인덱스 저장
                 break; // 순번은 고유하기 때문에 찾았으면 더 이상 반복할 필요 없음
             }
-        }
-
-        // 행 삭제
-        //TODO 데이터베이스상에서 삭제하게하기 / 실행 시 다시 돌아옴
-        if (rowIndex != -1) {
-            tableModel.removeRow(rowIndex);
         }
 
         // 데이터베이스 업데이트
