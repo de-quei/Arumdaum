@@ -50,8 +50,8 @@ public class ChooseFrame extends JFrame {
     	add(welcomeTextArea);
     	
         // 버튼 위치 및 크기 설정
-        applicationBtn.setBounds(40, 100, 100, 30);
-        searchBtn.setBounds(140, 100, 100, 30);
+        searchBtn.setBounds(40, 100, 100, 30);
+        applicationBtn.setBounds(140, 100, 100, 30);
         statusBtn.setBounds(240, 100, 100, 30);
         //sInfoBtn.setBounds(340, 100, 100, 30);
 

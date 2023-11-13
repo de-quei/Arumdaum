@@ -21,7 +21,7 @@ public class LoginFrame extends JFrame {
     JLabel LoginBackground = new JLabel(new ImageIcon("./img/loginframe.png"));
     JLabel title = new JLabel("\"아름다움\"");
     JLabel subheading = new JLabel(": 책 속에 모든 과거의 영혼이 잠들어 있다.");
-    JLabel studentId = new JLabel("학번");
+    JLabel studentId = new JLabel("아이디");
     JLabel password = new JLabel("비밀번호");
 
     public LoginFrame() {
@@ -51,7 +51,7 @@ public class LoginFrame extends JFrame {
     	subheading.setFont(new Font("Gowun Batang", Font.PLAIN, 16));
     	add(subheading);
     	
-    	studentId.setBounds(458, 316, 33, 24);
+    	studentId.setBounds(440, 316, 50, 24);
     	studentId.setFont(new Font("Gowun Batang", Font.PLAIN, 16));
     	add(studentId);
     	
