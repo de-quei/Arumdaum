@@ -132,6 +132,7 @@ public class MApplicationStatusFrame extends JFrame {
 
     private void loadApplicationStatus() {
         // 데이터베이스 연결 정보
+    	// TODO config.properties로 정보를 숨길 수 있지 않을까?
         String DB_URL = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
         String DB_USER = "root";
         String DB_PASSWORD = "0000";
