@@ -38,7 +38,7 @@ public class BookSearchFrame extends JFrame{
     DefaultTableModel tableModel;
     JTable resultTable;
     
-    String[] header = {"도서명", "ISBN", "출판사", "저자", "수량"};
+    String[] header = {"도서명", "카테고리", "출판사", "저자", "수량"};
     String[][] contents = {};
     
     String dbUrl = "jdbc:mysql://localhost:3306/arumdaum?useTimezone=true&serverTimezone=UTC";
@@ -138,13 +138,13 @@ public class BookSearchFrame extends JFrame{
             // 데이터베이스에서 가져온 데이터로 JTable을 채웁니다.
             while (resultSet.next()) {
                 String bookName = resultSet.getString("title"); 
-                String isbn = resultSet.getString("ISBN");
+                String category = resultSet.getString("category");
                 String publisher = resultSet.getString("publisher");
                 String author = resultSet.getString("author");
                 String status = resultSet.getString("totalCopies");
 
                 // JTable에 새로운 행을 추가합니다.
-                tableModel.addRow(new String[]{bookName, isbn, publisher, author, status});
+                tableModel.addRow(new String[]{bookName, category, publisher, author, status});
             }
 
             resultSet.close();
@@ -169,13 +169,13 @@ public class BookSearchFrame extends JFrame{
 	        // 데이터베이스에서 가져온 데이터로 JTable을 채웁니다.
 	        while (resultSet.next()) {
 	            String bookName = resultSet.getString("title");
-	            String isbn = resultSet.getString("ISBN");
+	            String category = resultSet.getString("category");
 	            String publisher = resultSet.getString("publisher");
 	            String author = resultSet.getString("author");
 	            String status = resultSet.getString("totalCopies");
 
 	            // JTable에 새로운 행을 추가합니다.
-	            tableModel.addRow(new String[]{bookName, isbn, publisher, author, status});
+	            tableModel.addRow(new String[]{bookName, category, publisher, author, status});
 	        }
 
 	        resultSet.close();
