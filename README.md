@@ -12,6 +12,7 @@
 - ```GUI basic```
 - ```Database```
 - ```File```
+- ```IOEXception```
 
 ## Introduce
   * 학생 화면
